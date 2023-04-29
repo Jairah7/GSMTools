@@ -7,6 +7,14 @@ if %opt%==5 goto sfrp
 if %opt%==6 goto hfrp
 if %opt%==7 goto xfrp
 if %opt%==8 goto frp
+if %opt%==9 goto payload
+
+:payload
+echo *** %date%-%time% Bypassing Auth *** >>logs.txt
+%mtk_process% payload >>logs.txt
+type logs.txt | findstr /i failed && echo Bypassing Auth failed >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  Bypassing Auth success >>logs.txt
+goto exit
 
 
 :gpt
