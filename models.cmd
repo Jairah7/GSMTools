@@ -18,8 +18,8 @@ echo "%search%" | findstr /i "infinix" && set "url=https://www.youtube.com/watch
 ::direct process
 echo "%search%" | findstr /i "gui" && echo  "%search%" Launching MTK Gui... >logs.txt && call mtk\mtkgui.bat && exit
 echo "%search%" | findstr /i "mtk" && echo  "MTK Auto Select Unit" is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
-echo "%search%" | findstr /i "mtk_safeformat" "Removing Passcode and FRP using Safeformat" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
-echo "%search%" | findstr /i "mtk_format" "Removing Passcode and FRP via Formating Userdata and FRP" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=2 && call %mtk%
+echo "%search%" | findstr /i "msafeformat" "Removing Passcode and FRP using Safeformat" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
+echo "%search%" | findstr /i "mformat" "Removing Passcode and FRP via Formating Userdata and FRP" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=2 && call %mtk%
 ::-----------------------------------------------------------------------------------------
 echo "%search%" | findstr /i "INFINIX_HOT_10_PLAY" && call :msg && set opt=2 && call %mtk%
 echo "%search%" | findstr /i "INFINIX_HOT_10s X689B" && call :msg && set opt=2 && call %mtk%
