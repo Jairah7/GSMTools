@@ -1,4 +1,5 @@
 ::last update M4D28Y23
+echo 0.1 >version
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
 if %opt%==3 goto cmtk
