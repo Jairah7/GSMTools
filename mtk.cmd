@@ -6,7 +6,7 @@ if %opt%==4 goto gpt
 if %opt%==5 goto sfrp
 if %opt%==6 goto hfrp
 if %opt%==7 goto xfrp
-if %opt%==8 goto frp
+if %opt%==8 goto mfrp
 if %opt%==9 goto payload
 
 :payload
@@ -55,7 +55,7 @@ type logs.txt | findstr /i failed && echo Formating Password and FRP failed. >>l
 type logs.txt | findstr /i success && echo  Formating Password and FRP success >>logs.txt
 goto exit
 
-:frp
+:mfrp
 ::format
 echo. >>logs.txt
 echo *** %date%-%time% Formating FRP *** >>logs.txt
