@@ -17,7 +17,7 @@ goto exit
 
 :smtk
 ::safeformat
-if exist testpoint start ffplay -i %tp% -window_title "%search%" by drox-PH-Ceb
+if exist testpoint start ffplay -i %tp% -window_title "%search%"
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
