@@ -6,6 +6,7 @@ if %opt%==4 goto gpt
 if %opt%==5 goto sfrp
 if %opt%==6 goto hfrp
 if %opt%==7 goto xfrp
+if %opt%==8 goto frp
 
 
 :gpt
