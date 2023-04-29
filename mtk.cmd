@@ -17,7 +17,7 @@ goto exit
 
 :smtk
 ::safeformat
-if exist testpoint start "" "ffplay -i %tp% -window_title "%search%""
+if exist testpoint start "" "ffplay -i %tp%"
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
@@ -30,7 +30,7 @@ if exist frp.txt goto frp
 ::safeformat
 echo. >>logs.txt
 echo *** %date%-%time% Setting up into brom mode... *** >>logs.txt
-if exist testpoint ffplay %tp% -vf "crop=in_w:in_h-40,scale=720:480" -window_title "%search%" by drox-PH-Ceb
+if exist testpoint start "" "ffplay -i %tp%"
 %mtk_process% crash >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
@@ -43,7 +43,7 @@ goto exit
 if exist frp.txt goto frp
 echo. >>logs.txt
 echo *** %date%-%time% Formating password and FRP *** >>logs.txt
-if exist testpoint ffplay -i "%tp%" -vf "crop=in_w:in_h-40,scale=720:480" -window_title "%search%" by drox-PH-Ceb
+if exist testpoint start "" "ffplay -i %tp%"
 %mtk_process%  e userdata,frp >>logs.txt
 type logs.txt | findstr /i failed && echo Formating Password and FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating Password and FRP success >>logs.txt
@@ -52,6 +52,7 @@ goto exit
 :frp
 ::format
 echo. >>logs.txt
+if exist testpoint start "" "ffplay -i %tp%"
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 %mtk_process%  e frp >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
@@ -61,6 +62,7 @@ goto exit
 :sfrp
 ::format
 echo. >>logs.txt
+if exist testpoint start "" "ffplay -i %tp%"
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 %mtk_process%  e persistent >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
@@ -70,6 +72,7 @@ goto exit
 :hfrp
 ::format
 echo. >>logs.txt
+if exist testpoint start "" "ffplay -i %tp%"
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 %mtk_process%  e oem >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
@@ -79,6 +82,7 @@ goto exit
 :xfrp
 ::format
 echo. >>logs.txt
+if exist testpoint start "" "ffplay -i %tp%"
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 %mtk_process%  e persist >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
