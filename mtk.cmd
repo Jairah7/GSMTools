@@ -17,8 +17,7 @@ goto exit
 
 :smtk
 ::safeformat
-if exist testpoint ffplay -i %tp% -vf "crop=in_w:in_h-40,scale=720:480" -window_title %search%
-if exist frp.txt goto frp
+if exist testpoint ffplay -i %tp% 
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
