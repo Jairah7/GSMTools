@@ -1,4 +1,4 @@
-::last update 04-28-2023
+::last update M4D28Y23
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
 if %opt%==3 goto cmtk
