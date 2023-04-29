@@ -3,8 +3,8 @@ echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jai
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
 ::Manual Referrences
 echo "%search%" | findstr /i "C11" && set "url=https://www.youtube.com/watch?v=q5o6-6KnGCw&pp=ygUOYzExIGZycCBieXBhc3M%3D" &&goto found 
-echo "%search%" | findstr /i "y15s && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4&t=10s" &&goto found
-echo "%search%" | findstr /i "y15a && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4&t=10s" &&goto found
+echo "%search%" | findstr /i "y15s && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" &&goto found
+echo "%search%" | findstr /i "y15a && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" &&goto found
 echo "%search%" | findstr /i "xiaomi 8t" && set "url=https://www.youtube.com/watch?v=16_Te9jvrdw&pp=ygUKeGlhb21pIGZycA%3D%3D" && goto found
 echo "%search%" | findstr /i "y15" && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" && goto found
 echo "%search%" | findstr /i "infinix" && set "url=https://www.youtube.com/watch?v=ktv8_wty2XY&pp=ygULaW5maW5peCBmcnA%3D" &&goto found
