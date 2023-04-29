@@ -20,6 +20,8 @@ echo "%search%" | findstr /i "gui" && echo  "%search%" Launching MTK Gui... >log
 echo "%search%" | findstr /i "mtk" && echo  "MTK Auto Select Unit" is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "msafeformat" && echo "Removing Passcode and FRP using Safeformat" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "mformat" && echo "Removing Passcode and FRP via Formating Userdata and FRP" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=2 && call %mtk%
+echo "%search%" | findstr /i "mReadGPT" && echo "Reading MTK GPT" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=4 && call %mtk% 
+echo "%search%" | findstr /i "mbypassauth" && echo "Bypassing Auto" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=9 && call %mtk% 
 ::-----------------------------------------------------------------------------------------
 echo "%search%" | findstr /i "INFINIX_HOT_10_PLAY" && call :msg && set opt=2 && call %mtk%
 echo "%search%" | findstr /i "INFINIX_HOT_10s X689B" && call :msg && set opt=2 && call %mtk%
