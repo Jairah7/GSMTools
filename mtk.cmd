@@ -19,7 +19,7 @@ goto exit
 ::safeformat
 echo dir
 pause
-if exist testpoint ffplay -i %tp% -vf "crop=in_w:in_h-40,scale=720:480" -window_title "%search%" by drox-PH-Ceb
+if exist testpoint ffplay "%tp%" -vf "crop=in_w:in_h-40,scale=720:480" -window_title "%search%" by drox-PH-Ceb
 if exist frp.txt goto frp
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
@@ -33,7 +33,7 @@ if exist frp.txt goto frp
 ::safeformat
 echo. >>logs.txt
 echo *** %date%-%time% Setting up into brom mode... *** >>logs.txt
-if exist testpoint ffplay -i "%tp%" -vf "crop=in_w:in_h-40,scale=720:480" -window_title "%search%" by drox-PH-Ceb
+if exist testpoint ffplay %tp% -vf "crop=in_w:in_h-40,scale=720:480" -window_title "%search%" by drox-PH-Ceb
 %mtk_process% crash >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
