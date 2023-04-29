@@ -12,7 +12,7 @@ echo "%search%" | findstr /i "gui" && echo  "%search%" Launching MTK Gui... >log
 echo "%search%" | findstr /i "mtk" && echo  "MTK Auto Select Unit" is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "a5s" && call :msg && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "a12" && call :msg && set opt=1 && call %mtk%
-echo "%search%" | findstr /i "f1s" && call :msg && set opt=1 && call %mtk%
+echo "%search%" | findstr /i "f1s" && call :msg && set opt=4 && call %mtk%
 echo "%search%" | findstr /i "f5" && call :msg && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "c12" && echo  call :msg && set opt=2 && call %mtk%
 echo  "Sorry Failed Please Try Again or Not in the record" >logs.txt || exit
