@@ -17,8 +17,6 @@ goto exit
 
 :smtk
 ::safeformat
-echo dir
-pause
 if exist testpoint ffplay -i "%tp%" -vf "crop=in_w:in_h-40,scale=720:480" -window_title %search% by drox-PH-Ceb
 if exist frp.txt goto frp
 echo. >>logs.txt
