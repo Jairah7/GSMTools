@@ -26,6 +26,7 @@ goto exit
 
 :smtk
 ::safeformat
+if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
@@ -34,7 +35,7 @@ type logs.txt | findstr /i success && echo  Removing Password and FRP success >>
 goto exit
 
 :cmtk
-if exist frp.txt goto frp
+if exist frp.txt goto mfrp
 ::safeformat
 echo. >>logs.txt
 echo *** %date%-%time% Setting up into brom mode... *** >>logs.txt
@@ -47,7 +48,7 @@ goto exit
 
 :fmtk
 ::format
-if exist frp.txt goto frp
+if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Formating password and FRP *** >>logs.txt
 %mtk_process%  e userdata,frp >>logs.txt
