@@ -1,4 +1,4 @@
-::last edit M5D1Y23
+::last edit M5D2Y23
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -9,6 +9,11 @@ echo "%search%" | findstr /i "TFT" && set "url=https://drive.google.com/file/d/1
 echo "%search%" | findstr /i "TC_12N1" && set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" && goto software
 echo "%search%" | findstr /i "eFixer" && set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" && goto software
 ::Manual Referrences
+echo "%search%" | findstr /i "y12s" && set "url=https://www.youtube.com/watch?v=QynCJz9jJE8" && goto found
+echo "%search%" | findstr /i "reno_5" && set "url=https://www.youtube.com/watch?v=oKGSOWLqcTk" && goto found
+echo "%search%" | findstr /i "y12" && set "url=https://www.youtube.com/watch?v=vLApPHWV8rU" && goto found
+echo "%search%" | findstr /i "y91i" && set "url=https://www.youtube.com/watch?v=SSDjMrO696Y&t=4s" && goto found
+echo "%search%" | findstr /i "Y35" && set "url=https://www.youtube.com/watch?v=-8WFw32moKA" && goto found
 echo "%search%" | findstr /i "C11" && set "url=https://www.youtube.com/watch?v=q5o6-6KnGCw&pp=ygUOYzExIGZycCBieXBhc3M%3D" && goto found 
 echo "%search%" | findstr /i "y15s" && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" && goto found
 echo "%search%" | findstr /i "y15a" && set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" && goto found
