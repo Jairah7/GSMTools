@@ -61,6 +61,7 @@ goto exit
 :audio
 if not exist "C:\Users\%username%\Desktop\audio" mkdir "C:\Users\%username%\Desktop\audio"
 plugins\yt.exe -i -x -c -w --no-warnings --audio-format mp3 --geo-bypass --yes-playlist --audio-quality 5 -o "C:\Users\%username%\Desktop\audio\%%(title)s.%%(ext)s" "%search%" >>logs.txt
+echo downloading...finished. >>logs.txt
 goto exit
 
 :exit 
