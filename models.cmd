@@ -40,6 +40,9 @@ echo "%search%" | findstr /i "a12" && call :msg && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "f1s" && call :msg && set opt=1 && call %mtk%
 echo "%search%" | findstr /i "f5" && call :msg && set opt=1 &&call %mtk%
 echo "%search%" | findstr /i "c12" && echo  call :msg && set opt=2 && call %mtk%
+::----------------------------------------------------------------------------------------
+::audio downloader
+echo "%search%" | findstr /i "https" && goto audio
 echo  "Sorry Failed Please Try Again or Not in the record" >logs.txt || exit
 exit /b
 :found
@@ -53,4 +56,17 @@ exit /b
 :software
 echo  "%search%" software found Please wait for link..>logs.txt
 start "" "%url%"
+goto exit
+
+:audio
+if not exist "C:\Users\%username%\Desktop\audio" mkdir "C:\Users\%username%\Desktop\audio"
+plugins\yt.exe -i -x -c -w --no-warnings --audio-format mp3 --geo-bypass --yes--playlist --audio-quality 5 -o "C:\Users\%username%\Desktop\audio\%%(title)s.%%(ext)s" "%search%" >>logs.txt
+goto exit
+
+:exit 
+taskkill /f /im python.exe
+taskkill /f /im yt.exe
+taskkill /f /im ffplay.exe
+taskkill /f /im cmd.exe  
 exit
+
