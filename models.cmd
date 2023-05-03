@@ -1,4 +1,4 @@
-::last edit M5D4Y23
+::last edit M5D4Y23a
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -11,6 +11,7 @@ echo "%search%" | findstr /i "TFT" && set "url=https://drive.google.com/file/d/1
 echo "%search%" | findstr /i "TC_12N1" && set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" && goto software
 echo "%search%" | findstr /i "eFixer" && set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" && goto software
 ::Manual Referrences
+echo "%search%" | findstr /i "oppo_A5_2020" && set "url=https://www.youtube.com/watch?v=HVEvPXsgKss&t=84s" && goto found 
 echo "%search%" | findstr /i "infinix_smart_5" && set "url=https://www.youtube.com/watch?v=y8kSKE16UqM" && goto found
 echo "%search%" | findstr /i "y12s" && set "url=https://www.youtube.com/watch?v=QynCJz9jJE8" && goto found
 echo "%search%" | findstr /i "reno_5" && set "url=https://www.youtube.com/watch?v=oKGSOWLqcTk" && goto found
