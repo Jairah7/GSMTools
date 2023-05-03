@@ -3,6 +3,7 @@ if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
 ::Software free
+echo "%search%" | findstr /i "GSM_drivers" && set "url=https://www.mediafire.com/file/l4700etvt3l5928/GSM_Drivers_Installer_setup.rar/file" && goto software
 echo "%search%" | findstr /i "AndroidUtility" && set "url=https://www.mediafire.com/file/m8mok08ashdttxe/AndroidUtility.v104.7z/file" && goto software
 echo "%search%" | findstr /i "Samfw" && set "url=https://www.mediafire.com/file/upaiwadhmstm6js/SamFwToolSetup_v4.6.zip/file" && goto software
 echo "%search%" | findstr /i "TFT" && set "url=https://drive.google.com/file/d/1C05zYjtFFSUHX6gOaROeO7MOj8mWNBr0/view" && goto software 
