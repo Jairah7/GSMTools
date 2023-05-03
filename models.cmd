@@ -60,7 +60,7 @@ goto exit
 
 :audio
 ping -n 1 google.com | findstr /i try >nul && echo No Internet Connection >logs.txt && goto exit
-if not exist plugins\ffmpeg.exe echo Please wait downloading requirements...>logs.txt & PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/garfiedhuang/VideoTools/master/VideoTools/ffmpeg/bin/ffmpeg.exe','plugins\ffmpeg.exe')"
+if not exist plugins\ffmpeg.exe echo Please wait downloading requirements this may take time for now but next download no need to download requirements....>logs.txt & PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/garfiedhuang/VideoTools/master/VideoTools/ffmpeg/bin/ffmpeg.exe','plugins\ffmpeg.exe')"
 if not exist "C:\Users\%username%\Desktop\audio" mkdir "C:\Users\%username%\Desktop\audio"
 plugins\yt.exe -i -x -c -w --no-warnings --audio-format mp3 --geo-bypass --yes-playlist --audio-quality 5 -o "C:\Users\%username%\Desktop\audio\%%(title)s.%%(ext)s" "%search%" >>logs.txt
 if %errorlevel% NEO 0 echo Downloading Failed. Please wait trying to update downloader... && yt -U >>logs.txt 
