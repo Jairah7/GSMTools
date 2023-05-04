@@ -77,7 +77,7 @@ goto exit
 :hfrp
 ::format
 echo. >>logs.txt
-echo *** %date%-%time% Formating FRP *** >>logs.txt
+echo *** %date%-%time% Formating FRP for huawei*** >>logs.txt
 %mtk_process%  e oem >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
@@ -86,7 +86,7 @@ goto exit
 :xfrp
 ::format
 echo. >>logs.txt
-echo *** %date%-%time% Formating FRP *** >>logs.txt
+echo *** %date%-%time% Formating FRP for xiaomi *** >>logs.txt
 %mtk_process%  e persist >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
