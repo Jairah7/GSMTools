@@ -39,6 +39,8 @@ echo "%search%" | findstr /i "msafeformat" && echo "Removing Passcode and FRP us
 echo "%search%" | findstr /i "mformat" && echo "Removing Passcode and FRP via Formating Userdata and FRP" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=2 && call %mtk%
 echo "%search%" | findstr /i "mReadGPT" && echo "Reading MTK GPT" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=4 && call %mtk% 
 echo "%search%" | findstr /i "mbypassauth" && echo "Bypassing Auto" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=9 && call %mtk% 
+echo "%search%" | findstr /i "munlock_bootloader" && echo Unlocking bootloader for mtk device... >>logs.txt && set opt=10 && call %mtk%
+echo "%search%" | findstr /i "mrelock_bootloader" && echo Relocking bootloader for mtk device... >>logs.txt && set opt=11 && call %mtk%
 ::-----------------------------------------------------------------------------------------
 echo "%search%" | findstr /i "mxiaomi_miaccount" && call :msg && set opt=7 && call %mtk%
 echo "%search%" | findstr /i "mhuawei_id" && call :msg && set opt=6 && call %mtk%
