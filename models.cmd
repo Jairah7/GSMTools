@@ -13,7 +13,7 @@ if /i "%search%"=="TFT" set "url=https://drive.google.com/file/d/1C05zYjtFFSUHX6
 if /i "%search%"=="TC12N1" set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" &goto software
 if /i "%search%"=="eFixer" set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" &goto software
 ::Manual Referrences
-if /i "%search%"=="vivo" && set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" &goto found
+if /i "%search%"=="vivo" set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" &goto found
 if /i "%search%"=="vivoT1" set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" &goto found
 if /i "%search%"=="vivoY22s" set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" &goto found
 if /i "%search%"=="vivoY22" set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" &goto found
@@ -53,13 +53,13 @@ if /i "%search%"=="INFINIXHOT10sX689B" &call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="oppoa5s" &call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppoa12" &call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" &call :msg &set opt=1 &call %mtk%
-if /i "%search%"=="oppof5" &call :msg && set opt=1 &call %mtk%
+if /i "%search%"=="oppof5" &call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" &echo  call :msg &set opt=2 &call %mtk%
 echo Sorry "%search%" is not found. Just inform me so that i can add it in database. >>logs.txt
 goto exit
 ::----------------------------------------------------------------------------------------
 ::audio downloader
-echo "%search%" | findstr /i "https" && goto audio
+echo "%search%" | findstr /i "https" &goto audio
 echo  "Sorry Failed Please Try Again or Not in the record" >logs.txt || exit
 exit /b
 :found
