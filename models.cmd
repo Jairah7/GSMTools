@@ -44,7 +44,6 @@ if /i "%search%"=="mtkReadGPT" echo "Reading MTK GPT" Just Hold Vol_up+Vol_down 
 if /i "%search%"=="mtkbypassauth" echo "Bypassing Auto" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=9 &call %mtk% 
 if /i "%search%"=="mtkunlockbootloader" echo Unlocking bootloader for mtk device... >>logs.txt &set opt=10 &call %mtk%
 if /i "%search%"=="mtkrelockbootloader" echo Relocking bootloader for mtk device... >>logs.txt &set opt=11 &call %mtk%
-::-----------------------------------------------------------------------------------------
 if /i "%search%"=="mtkxiaomimiaccount" call :msg &set opt=7 &call %mtk%
 if /i "%search%"=="mtkhuaweiid" call :msg &set opt=6 &call %mtk%
 if /i "%search%"=="mtksamsungfrp" call :msg &et opt=5 &call %mtk%
