@@ -68,6 +68,7 @@ goto exit
 :sfrp
 ::format
 echo. >>logs.txt
+echo  Please use "gui" to backup persistent - [recommended] >>logs.txt
 echo *** %date%-%time% Formating FRP for mtk samsung *** >>logs.txt
 %mtk_process%  e persistent >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
@@ -77,7 +78,8 @@ goto exit
 :hfrp
 ::format
 echo. >>logs.txt
-echo *** %date%-%time% Formating FRP for huawei*** >>logs.txt
+echo Please use "gui" to backup oem >>recommended >>logs.txt
+echo *** %date%-%time% Formating  huawei id account*** >>logs.txt
 %mtk_process%  e oem >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
@@ -86,7 +88,8 @@ goto exit
 :xfrp
 ::format
 echo. >>logs.txt
-echo *** %date%-%time% Formating FRP for xiaomi *** >>logs.txt
+echo Please use "gui" to backup persist - [recommended] >>logs.txt
+echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
 %mtk_process%  e persist >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
