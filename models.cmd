@@ -5,7 +5,7 @@ echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
 set search=%search:"=%
 set search=%search: =%
 ::Software free
-if /i "%search%"=="LCDPRICEList" set "url=https://www.mediafire.com/file/mejpg326k69k6og/TC_LCD_Market_Price_List.exe/file" &goto sotware
+if /i "%search%"=="LCDPRICEList" set "url=https://www.mediafire.com/file/mejpg326k69k6og/TC_LCD_Market_Price_List.exe/file" &goto software
 if /i "%search%"=="GSMdrivers" set "url=https://www.mediafire.com/file/l4700etvt3l5928/GSM_Drivers_Installer_setup.rar/file" &goto software
 if /i "%search%"=="AndroidUtility" set "url=https://www.mediafire.com/file/m8mok08ashdttxe/AndroidUtility.v104.7z/file" &goto software
 if /i "%search%"=="Samfw" set "url=https://www.mediafire.com/file/upaiwadhmstm6js/SamFwToolSetup_v4.6.zip/file" &goto software
