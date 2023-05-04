@@ -10,6 +10,15 @@ if %opt%==8 goto mfrp
 if %opt%==9 goto payload
 if %opt%==10 goto unlockbl
 if %opt%==11 goto relockbl
+if %opt%==12 goto mprivacy
+
+:mprivacy
+echo Please us "gui" to backup nvdata - recommended >>logs.txt
+echo *** %date%-%time% Please wait Removing privacy for mtk device *** >>logs.txt
+%mtk_process% e nvdata >>logs.txt
+type logs.txt | findstr /i failed && echo Removing privacy failed >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  Removing privacy success >>logs.txt && goto exit
+goto exit
 
 :relockbl
 echo *** %date%-%time% Please wait relocking bootloader for mtk device *** >>logs.txt
@@ -94,7 +103,7 @@ goto exit
 :hfrp
 ::format
 echo. >>logs.txt
-echo Please use "gui" to backup oem >>recommended >>logs.txt
+echo Please use "gui" to backup oeminfo >>recommended >>logs.txt
 echo *** %date%-%time% Formating  huawei id account*** >>logs.txt
 %mtk_process%  e oeminfo >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
