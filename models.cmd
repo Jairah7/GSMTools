@@ -55,7 +55,7 @@ if /i "%search%"=="oppoa12" &call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" &call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" &call :msg && set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" &echo  call :msg &set opt=2 &call %mtk%
-echo Sorry "%search%" is not found. Just inform me so that i can add it in database.
+echo Sorry "%search%" is not found. Just inform me so that i can add it in database. >>logs.txt
 goto exit
 ::----------------------------------------------------------------------------------------
 ::audio downloader
