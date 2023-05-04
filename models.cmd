@@ -2,7 +2,7 @@
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
-set model=="%search%"
+set model="%search%"
 set search=%search:"=%
 set search=%search: =%
 ::Software free
