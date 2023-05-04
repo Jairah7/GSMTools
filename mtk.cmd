@@ -96,7 +96,7 @@ goto exit
 echo. >>logs.txt
 echo Please use "gui" to backup oem >>recommended >>logs.txt
 echo *** %date%-%time% Formating  huawei id account*** >>logs.txt
-%mtk_process%  e oem >>logs.txt
+%mtk_process%  e oeminfo >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
 goto exit
