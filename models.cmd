@@ -47,7 +47,7 @@ if /i "%search%"=="mtkunlockbootloader" echo Unlocking bootloader for mtk device
 if /i "%search%"=="mtkrelockbootloader" echo Relocking bootloader for mtk device... >>logs.txt &set opt=11 &call %mtk%
 if /i "%search%"=="mtkxiaomimiaccount" call :msg &set opt=7 &call %mtk%
 if /i "%search%"=="mtkhuaweiid" call :msg &set opt=6 &call %mtk%
-if /i "%search%"=="mtksamsungfrp" call :msg &et opt=5 &call %mtk%
+if /i "%search%"=="mtksamsungfrp" call :msg &set opt=5 &call %mtk%
 if /i "%search%"=="INFINIXHOT10PLAY" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="INFINIXHOT10sX689B" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="oppoa5s" call :msg &set opt=1 &call %mtk%
