@@ -32,6 +32,7 @@ echo "%search%" | findstr /i "vivo_y15" && set "url=https://www.youtube.com/watc
 echo "%search%" | findstr /i "infinix" && set "url=https://www.youtube.com/watch?v=ktv8_wty2XY&pp=ygULaW5maW5peCBmcnA%3D" && goto found
 ::-----------------------------------------------------------------------------------------------------------------------------------------------
 ::direct process
+echo "%search%" | findstr /i "mprivacy" && call :msg && set opt=12 && call %mtk% 
 echo "%search%" | findstr /i "gui" && echo  "%search%" Launching MTK Gui... >logs.txt && call mtk\mtkgui.bat && exit
 echo "%search%" | findstr /i "mfrp" && echo "%search%" Removing frp for all mtk... >logs.txt && set opt=8 && call %mtk% 
 echo "%search%" | findstr /i "mtk" && echo  "MTK Auto Select Unit" is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=1 && call %mtk%
