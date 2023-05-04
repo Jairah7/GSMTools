@@ -40,7 +40,7 @@ echo "%search%" | findstr /i "mformat" && echo "Removing Passcode and FRP via Fo
 echo "%search%" | findstr /i "mReadGPT" && echo "Reading MTK GPT" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=4 && call %mtk% 
 echo "%search%" | findstr /i "mbypassauth" && echo "Bypassing Auto" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt && set opt=9 && call %mtk% 
 ::-----------------------------------------------------------------------------------------
-echo "%search%" | findstr /i "samsung_frp" && call :msg && set opt=5 && call %mtk%
+echo "%search%" | findstr /i "mtk_samsung_frp" && call :msg && set opt=5 && call %mtk%
 echo "%search%" | findstr /i "INFINIX_HOT_10_PLAY" && call :msg && set opt=2 && call %mtk%
 echo "%search%" | findstr /i "INFINIX_HOT_10s X689B" && call :msg && set opt=2 && call %mtk%
 echo "%search%" | findstr /i "oppo_a5s" && call :msg && set opt=1 && call %mtk%
