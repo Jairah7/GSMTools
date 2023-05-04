@@ -55,13 +55,11 @@ if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" echo  call :msg &set opt=2 &call %mtk%
+echo "%model%" | findstr /i https && goto audio
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
 goto exit
 ::----------------------------------------------------------------------------------------
-::audio downloader
-echo "%model%" | findstr /i "https" &goto audio
-echo  "Sorry Failed Please Try Again or Not in the record" >logs.txt || exit
-exit /b
+
 :found
 echo  "%model%" Model Reference found Please wait for pop-up...>logs.txt
 exit /b
