@@ -11,6 +11,7 @@ echo "%search%" | findstr /i "TFT" && set "url=https://drive.google.com/file/d/1
 echo "%search%" | findstr /i "TC_12N1" && set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" && goto software
 echo "%search%" | findstr /i "eFixer" && set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" && goto software
 ::Manual Referrences
+echo "%search%" | findstr /i "vivo" && set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" && goto found
 echo "%search%" | findstr /i "vivo_T1" && set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" && goto found
 echo "%search%" | findstr /i "vivo_Y22s" && set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" && goto found
 echo "%search%" | findstr /i "vivo_Y22" && set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" && goto found
