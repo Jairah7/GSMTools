@@ -2,6 +2,7 @@
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
+set %search%=model
 set search=%search:"=%
 set search=%search: =%
 ::Software free
@@ -58,19 +59,19 @@ echo Sorry "%search%" is not found. Just inform me so that i can add it in datab
 goto exit
 ::----------------------------------------------------------------------------------------
 ::audio downloader
-echo "%search%" | findstr /i "https" &goto audio
+echo "%model%" | findstr /i "https" &goto audio
 echo  "Sorry Failed Please Try Again or Not in the record" >logs.txt || exit
 exit /b
 :found
-echo  "%search%" Model Reference found Please wait for pop-up...>logs.txt
+echo  "%model%" Model Reference found Please wait for pop-up...>logs.txt
 exit /b
 
 :msg
-echo  "%search%" model is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt
+echo  "%model%" model is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt
 exit /b
 
 :software
-echo  "%search%" software found Please wait for link..>logs.txt
+echo  "%model%" software found Please wait for link..>logs.txt
 start "" "%url%"
 goto exit
 
