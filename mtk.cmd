@@ -8,6 +8,22 @@ if %opt%==6 goto hfrp
 if %opt%==7 goto xfrp
 if %opt%==8 goto mfrp
 if %opt%==9 goto payload
+if %opt%==10 goto unlockbl
+if %opt%==11 goto relockbl
+
+:relockbl
+echo *** %date%-%time% Please wait relocking bootloader for mtk device *** >>logs.txt
+%mtk_process% da seccfg lock >>logs.txt
+type logs.txt | findstr /i failed && echo relocking bootloader failed >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  relocking bootloader success >>logs.txt && goto exit
+goto exit
+
+:unlockbl
+echo *** %date%-%time% Please wait unlocking bootloader for mtk device *** >>logs.txt
+%mtk_process% da seccfg unlock >>logs.txt
+type logs.txt | findstr /i failed && echo unlocking bootloader failed >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  unlocking bootloader success >>logs.txt && goto exit
+goto exit
 
 :payload
 echo *** %date%-%time% Bypassing Auth *** >>logs.txt
