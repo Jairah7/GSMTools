@@ -1,4 +1,4 @@
-::last edit M5D5Y23f
+::last edit M5D5Y23g
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -37,6 +37,7 @@ if /i "%search%"=="samsungA30s" set "url=https://www.youtube.com/watch?v=J8h-IK4
 if /i "%search%"=="xiaomi8t" set "url=https://www.youtube.com/watch?v=16_Te9jvrdw&pp=ygUKeGlhb21pIGZycA%3D%3D" &goto found
 if /i "%search%"=="vivoy15" set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" &goto found
 if /i "%search%"=="infinix" set "url=https://www.youtube.com/watch?v=ktv8_wty2XY&pp=ygULaW5maW5peCBmcnA%3D" &goto found
+if /i "%search%"=="iTellA26" set "url=https://www.youtube.com/watch?v=T7ktHL0ifmA" &goto found
 ::-----------------------------------------------------------------------------------------------------------------------------------------------
 ::direct process
 if /i "%search%"=="mtkprivacy" call :msg &set opt=12 &call %mtk% 
