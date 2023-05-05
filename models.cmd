@@ -1,4 +1,4 @@
-::last edit M5D5Y23c
+::last edit M5D5Y23d
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -51,6 +51,7 @@ if /i "%search%"=="mtkhuaweiid" call :msg &set opt=6 &call %mtk%
 if /i "%search%"=="mtksamsungfrp" call :msg &set opt=5 &call %mtk%
 if /i "%search%"=="INFINIXHOT10PLAY" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="INFINIXHOT10sX689B" call :msg &set opt=2 &call %mtk%
+if /i "%search%"=="oppof7" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppoa5s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
