@@ -1,4 +1,4 @@
-::last edit M5D5Y23d
+::last edit M5D5Y23e
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -16,6 +16,8 @@ if /i "%search%"=="TC12N1" set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEb
 if /i "%search%"=="eFixer" set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" &goto software
 ::Manual Referrences
 if /i "%search%"=="vivo" set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" &goto found
+if /i "%search%"=="vivoT25G" set "url=https://www.youtube.com/watch?v=rTaiOILG2t8" &goto found
+if /i "%search%"=="vivoT2X5G" set "url=https://www.youtube.com/watch?v=rTaiOILG2t8" &goto found
 if /i "%search%"=="vivoT1" set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" &goto found
 if /i "%search%"=="vivoY22s" set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" &goto found
 if /i "%search%"=="vivoY22" set "url=https://www.youtube.com/watch?v=3b_1eUeT16k" &goto found
