@@ -25,7 +25,7 @@ if /i "%search%"=="oppoA52020" set "url=https://www.youtube.com/watch?v=HVEvPXsg
 if /i "%search%"=="TecnoSpark9T" set "url=https://www.youtube.com/watch?v=iTfx9as5HZw" &goto found
 if /i "%search%"=="infinixsmart5" set "url=https://www.youtube.com/watch?v=y8kSKE16UqM" &goto found
 if /i "%search%"=="vivoy12s" set "url=https://www.youtube.com/watch?v=QynCJz9jJE8" &goto found
-if /i "%search%"==OppoA16[CPH2269] set "url=https://www.youtube.com/watch?v=-l6wmbnuM6U" &goto found
+if /i "%search%"=="OppoA16[CPH2269]" set "url=https://www.youtube.com/watch?v=-l6wmbnuM6U" &goto found
 if /i "%search%"=="OppoAndroid13" set "url=https://www.youtube.com/watch?v=SfNB9NmBVrI" &goto found
 if /i "%search%"=="reno5" set "url=https://www.youtube.com/watch?v=oKGSOWLqcTk" &goto found
 if /i "%search%"=="vivoy12" set "url=https://www.youtube.com/watch?v=vLApPHWV8rU" &goto found
