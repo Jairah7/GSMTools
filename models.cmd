@@ -34,7 +34,6 @@ if /i "%search%"=="vivoy15s" set "url=https://www.youtube.com/watch?v=dvA0Karr9e
 if /i "%search%"=="vivoy15a" set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" &goto found
 if /i "%search%"=="samsungA20s" set "url=https://www.youtube.com/watch?v=J8h-IK4u9SM" &goto found
 if /i "%search%"=="samsungA30s" set "url=https://www.youtube.com/watch?v=J8h-IK4u9SM" &goto found
-if /i "%search%"=="xiaomi8t" set "url=https://www.youtube.com/watch?v=16_Te9jvrdw&pp=ygUKeGlhb21pIGZycA%3D%3D" &goto found
 if /i "%search%"=="vivoy15" set "url=https://www.youtube.com/watch?v=dvA0Karr9e4" &goto found
 if /i "%search%"=="infinix" set "url=https://www.youtube.com/watch?v=ktv8_wty2XY&pp=ygULaW5maW5peCBmcnA%3D" &goto found
 if /i "%search%"=="InfinixZero5g" set "url=https://www.youtube.com/watch?v=okAmWymcCVo" &goto found
