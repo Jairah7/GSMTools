@@ -1,4 +1,4 @@
-::last edit M5D5Y23g
+::last edit M5D5Y23h
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -25,6 +25,7 @@ if /i "%search%"=="oppoA52020" set "url=https://www.youtube.com/watch?v=HVEvPXsg
 if /i "%search%"=="TecnoSpark9T" set "url=https://www.youtube.com/watch?v=iTfx9as5HZw" &goto found
 if /i "%search%"=="infinixsmart5" set "url=https://www.youtube.com/watch?v=y8kSKE16UqM" &goto found
 if /i "%search%"=="vivoy12s" set "url=https://www.youtube.com/watch?v=QynCJz9jJE8" &goto found
+if /i "%search%"=="OppoAndroid13" set "url=https://www.youtube.com/watch?v=SfNB9NmBVrI" &goto found
 if /i "%search%"=="reno5" set "url=https://www.youtube.com/watch?v=oKGSOWLqcTk" &goto found
 if /i "%search%"=="vivoy12" set "url=https://www.youtube.com/watch?v=vLApPHWV8rU" &goto found
 if /i "%search%"=="vivoy91i" set "url=https://www.youtube.com/watch?v=SSDjMrO696Y&t=4s" &goto found
