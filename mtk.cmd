@@ -1,4 +1,4 @@
-::last update M4D30Y23
+::last update M5D6Y23
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
 if %opt%==3 goto cmtk
@@ -12,6 +12,14 @@ if %opt%==10 goto unlockbl
 if %opt%==11 goto relockbl
 if %opt%==12 goto mprivacy
 if %opt%==13 goto mrebuild
+if %opt%==14 goto removedemo
+
+:removedemo
+echo *** %date%-%time% Please wait removing demo for vivo device *** >>logs.txt
+%mtk_process% e backup >>logs.txt
+type logs.txt | findstr /i failed && echo Removing Demo failed >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  Removing Demo success >>logs.txt && goto exit
+goto exit
 
 :mrebuild
 if not exist mtk\rdata.rar echo Please wait downloading file...>>logs.txt &goto download
@@ -26,7 +34,7 @@ type logs.txt | findstr /i success && echo  Rebuilding Userdata success >>logs.t
 goto exit
 
 :mprivacy
-echo Please us "gui" to backup nvdata - recommended >>logs.txt
+echo Please use "gui" to backup nvdata - recommended >>logs.txt
 echo *** %date%-%time% Please wait Removing privacy for mtk device *** >>logs.txt
 %mtk_process% e nvdata >>logs.txt
 type logs.txt | findstr /i failed && echo Removing privacy failed >>logs.txt && goto exit
