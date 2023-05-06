@@ -43,6 +43,7 @@ if /i "%search%"=="ItellA26" set "url=https://www.youtube.com/watch?v=T7ktHL0ifm
 if /i "%search%"=="ItelVision1Pro" set "url=https://www.youtube.com/watch?v=rbzcqzNJ6bk" &goto found
 ::-----------------------------------------------------------------------------------------------------------------------------------------------
 ::direct process
+if /i "%search%"=="mtkrebuilduserdata" call :msg &set opt=13 &call %mtk% 
 if /i "%search%"=="mtkprivacy" call :msg &set opt=12 &call %mtk% 
 if /i "%search%"=="gui" echo  "%search%" Launching MTK Gui... >logs.txt &call mtk\mtkgui.bat &exit
 if /i "%search%"=="mtkfrp" echo "%search%" Removing frp for all mtk... >logs.txt &set opt=8 &call %mtk% 
