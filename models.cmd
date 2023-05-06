@@ -1,4 +1,4 @@
-::last edit M5D5Y23m
+::last edit M5D5Y23n
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -65,7 +65,8 @@ if /i "%search%"=="oppoa5s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" call :msg &set opt=1 &call %mtk%
-if /i "%search%"=="realmec12" echo  call :msg &set opt=2 &call %mtk%
+if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
+if /i "%search%"=="vivoy81" call :msg &set opt=2 &call %mtk%
 echo "%model%" | findstr /i https && goto audio
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
 goto exit
