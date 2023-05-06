@@ -14,9 +14,12 @@ if %opt%==12 goto mprivacy
 if %opt%==13 goto mrebuild
 
 :mrebuild
-echo *** %date%-%time% Please wait rebuilding Userdata for mtk device *** >>logs.txt
-if not exist mtk\rdata.rar Please wait downloading file >>logs.txt &PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/rdata.rar','mtk\rdata.rar')" >>logs.txt
+if not exist mtk\rdata.rar echo Please wait downloading file...>>logs.txt &goto download
+if exist mtk\rdata echo *** %date%-%time% Please wait rebuilding Userdata for mtk device *** >>logs.txt &goto mrebuild
+:download
+PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/rdata.rar','mtk\rdata.rar')" >>logs.txt
 if exist mtk\rdata.rar plugins\7zip\7z x -y mtk\rdata.rar -omtk >>logs.txt
+:mrebuild
 if exist mtk\rdata %mtk_process% w userdata mtk\rdata >>logs.txt 
 type logs.txt | findstr /i failed && echo Rebuilding Userdata failed >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Rebuilding Userdata success >>logs.txt && goto exit
