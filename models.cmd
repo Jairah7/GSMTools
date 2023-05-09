@@ -1,4 +1,4 @@
-::last edit M5D5Y23o
+::last edit M5D5Y23p
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -49,8 +49,10 @@ if /i "%search%"=="mtkprivacy" call :msg &set opt=12 &call %mtk%
 if /i "%search%"=="gui" echo  "%search%" Launching MTK Gui... >logs.txt &call mtk\mtkgui.bat &exit
 if /i "%search%"=="mtkfrp" echo "%search%" Removing frp for all mtk... >logs.txt &set opt=8 &call %mtk% 
 if /i "%search%"=="mtk" echo "MTK Auto Select Unit" is suported. Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=1 &call %mtk%
-if /i "%search%"=="mtksafeformat" echo "Removing Passcode and FRP using Safeformat" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=1 &call %mtk%
-if /i "%search%"=="mtkformat" echo "Removing Passcode and FRP via Formating Userdata and FRP" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=2 &call %mtk%
+if /i "%search%"=="mtksafeformat" echo "Removing Passcode using Para" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=15 &call %mtk%
+if /i "%search%"=="mtksafeformat+frp" echo "Removing Passcode and FRP using Safeformat" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=1 &call %mtk%
+if /i "%search%"=="mtkformat" echo "Formating Passcode" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=16 &call %mtk%
+if /i "%search%"=="mtkformat+frp" echo "Removing Passcode and FRP via Formating Userdata and FRP" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=2 &call %mtk%
 if /i "%search%"=="mtkReadGPT" echo "Reading MTK GPT" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=4 &call %mtk% 
 if /i "%search%"=="mtkbypassauth" echo "Bypassing Auto" Just Hold Vol_up+Vol_down and insert usb cable >logs.txt &set opt=9 &call %mtk% 
 if /i "%search%"=="mtkunlockbootloader" echo Unlocking bootloader for mtk device... >>logs.txt &set opt=10 &call %mtk%
