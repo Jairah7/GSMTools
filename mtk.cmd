@@ -14,10 +14,19 @@ if %opt%==12 goto mprivacy
 if %opt%==13 goto mrebuild
 if %opt%==14 goto removedemo
 if %opt%==15 goto msafeformat
+if %opt%==16 goto mformat
+
+:mformat
+::format only
+echo. >>logs.txt
+echo *** %date%-%time% Formating password only*** >>logs.txt
+%mtk_process%  e userdata >>logs.txt
+type logs.txt | findstr /i failed && echo Formating Password failed. >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  Formating Password success >>logs.txt && goto exit
+goto exit
 
 :msafeformat
 ::safeformat
-if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Removing password - safeformat *** >>logs.txt
 %mtk_process% w para mtk\password.dll >>logs.txt
