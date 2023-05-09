@@ -6,16 +6,16 @@ set "model=%search%"
 set search=%search:"=%
 set search=%search: =%
 ::Software free
-if /i "%search%"=="Zenon_1.8" set "url=https://www.mediafire.com/file/a0i6ize4mmazs35/Zenon_1.8.zip/file" &goto software 
+if /i "%search%"=="Zenon_1.8" set "url=https://www.mediafire.com/file/a0i6ize4mmazs35/Zenon_1.8.zip/file" &set "u=https://i.imgur.com/pTGieeT.png" &goto software 
 if /i "%search%"=="winrain" set "url=https://www.mediafire.com/file/ur7borqouxks2x0/Winrain.rar/file" &goto software
 if /i "%search%"=="LCDPRICEList" set "url=https://www.mediafire.com/file/mejpg326k69k6og/TC_LCD_Market_Price_List.exe/file" &goto software
-if /i "%search%"=="GSMdrivers" set "url=https://www.mediafire.com/file/l4700etvt3l5928/GSM_Drivers_Installer_setup.rar/file" &goto software
+if /i "%search%"=="GSMdrivers" set "url=https://www.mediafire.com/file/l4700etvt3l5928/GSM_Drivers_Installer_setup.rar/file" &set "u=https://i.imgur.com/B6gGz8y.png" &goto software
 if /i "%search%"=="AndroidUtility" set "url=https://www.mediafire.com/file/m8mok08ashdttxe/AndroidUtility.v104.7z/file" &goto software
-if /i "%search%"=="Samfw" set "url=https://www.mediafire.com/file/upaiwadhmstm6js/SamFwToolSetup_v4.6.zip/file" &goto software
-if /i "%search%"=="TFT" set "url=https://drive.google.com/file/d/1C05zYjtFFSUHX6gOaROeO7MOj8mWNBr0/view" &goto software 
-if /i "%search%"=="TC12N1" set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" &goto software
+if /i "%search%"=="Samfw" set "url=https://www.mediafire.com/file/upaiwadhmstm6js/SamFwToolSetup_v4.6.zip/file" &set "u=https://i.imgur.com/o0Vl3U4.png" &goto software
+if /i "%search%"=="TFT" set "url=https://drive.google.com/file/d/1C05zYjtFFSUHX6gOaROeO7MOj8mWNBr0/view" &set "u=https://i.imgur.com/yhWsOV0.png" &goto software 
+if /i "%search%"=="TC12N1" set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" &set "u=https://imgur.com/pX4sW9G" &goto software
 if /i "%search%"=="eFixer" set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" &goto software
-if /i "%search%"=="iFRPFILE_AIO_v2.8.6" set "url=https://www.mediafire.com/file/4k75elmcy6gloit/iFRPFILE_AIO_v2.8.6.zip/file" &goto software 
+if /i "%search%"=="iFRPFILE_AIO_v2.8.6" set "url=https://www.mediafire.com/file/4k75elmcy6gloit/iFRPFILE_AIO_v2.8.6.zip/file" &set "u=https://i.imgur.com/NSnYoda.png" &goto software 
 ::Manual Referrences
 if /i "%search%"=="vivo" set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" &goto found
 if /i "%search%"=="vivoT25G" set "url=https://www.youtube.com/watch?v=rTaiOILG2t8" &goto found
@@ -87,7 +87,12 @@ echo  "%model%" model is suported. Just Hold Vol_up+Vol_down and insert usb cabl
 exit /b
 
 :software
-echo  "%model%" software found Please wait for link..>logs.txt
+set "h=720"
+set "w=480"
+set "Height=40"
+echo  "%model%" software found. Just close the photo sample for link to pop-up...>logs.txt
+if %u%=="" goto go ffplay -i %u% -vf "crop=in_w:in_h-%Height%,scale=%h%:%w%" -window_title "TC Manual and Direct by drox-PH-Ceb"
+:go
 start "" "%url%"
 goto exit
 
