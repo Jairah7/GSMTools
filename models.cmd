@@ -1,4 +1,4 @@
-::last edit M5D5Y23r
+::last edit M5D5Y23s
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -6,6 +6,7 @@ set "model=%search%"
 set search=%search:"=%
 set search=%search: =%
 ::Software free
+if /i "%search%"=="Zenon_1.8" set "url=https://www.mediafire.com/file/a0i6ize4mmazs35/Zenon_1.8.zip/file" &goto software 
 if /i "%search%"=="winrain" set "url=https://www.mediafire.com/file/ur7borqouxks2x0/Winrain.rar/file" &goto software
 if /i "%search%"=="LCDPRICEList" set "url=https://www.mediafire.com/file/mejpg326k69k6og/TC_LCD_Market_Price_List.exe/file" &goto software
 if /i "%search%"=="GSMdrivers" set "url=https://www.mediafire.com/file/l4700etvt3l5928/GSM_Drivers_Installer_setup.rar/file" &goto software
