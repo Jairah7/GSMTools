@@ -15,6 +15,17 @@ if %opt%==13 goto mrebuild
 if %opt%==14 goto removedemo
 if %opt%==15 goto msafeformat
 if %opt%==16 goto mformat
+if %opt%==17 goto crash2brom
+
+:crash2brom
+::force to brom using preloader
+%msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5
+call :pre
+echo Please wait Crashing preloader to brom... >>logs.txt
+%mtk_process% plstage --preloader=%file% >>logs.txt
+type logs.txt | findstr /i failed && echo Crashing preloader to brom failed. >>logs.txt && goto exit
+type logs.txt | findstr /i success && echo  Crashing preloader to brom failed. >>logs.txt && goto exit
+goto exit
 
 :mformat
 ::format only
@@ -160,6 +171,13 @@ echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
 type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
 goto exit
+
+:pre
+set file=
+set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
+for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
+if "%file%"=="" echo No file selected >>logs.txt &goto exit
+exit /b
 
 :exit
 timeout 3 >nul
