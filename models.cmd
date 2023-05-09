@@ -1,4 +1,4 @@
-::last edit M5D5Y23q
+::last edit M5D5Y23r
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -14,6 +14,7 @@ if /i "%search%"=="Samfw" set "url=https://www.mediafire.com/file/upaiwadhmstm6j
 if /i "%search%"=="TFT" set "url=https://drive.google.com/file/d/1C05zYjtFFSUHX6gOaROeO7MOj8mWNBr0/view" &goto software 
 if /i "%search%"=="TC12N1" set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" &goto software
 if /i "%search%"=="eFixer" set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" &goto software
+if /i "%search%"=="iFRPFILE_AIO_v2.8.6" set "url=https://www.mediafire.com/file/4k75elmcy6gloit/iFRPFILE_AIO_v2.8.6.zip/file" &goto software 
 ::Manual Referrences
 if /i "%search%"=="vivo" set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" &goto found
 if /i "%search%"=="vivoT25G" set "url=https://www.youtube.com/watch?v=rTaiOILG2t8" &goto found
