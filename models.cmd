@@ -91,7 +91,7 @@ set "h=720"
 set "w=480"
 set "Height=40"
 echo  "%model%" software found. Just close the photo sample for link to pop-up...>logs.txt
-if %u%=="" goto go ffplay -i %u% -vf "crop=in_w:in_h-%Height%,scale=%h%:%w%" -window_title "TC Manual and Direct by drox-PH-Ceb"
+ffplay -i %u% -vf "crop=in_w:in_h-%Height%,scale=%h%:%w%" -window_title "TC Manual and Direct by drox-PH-Ceb"
 :go
 start "" "%url%"
 goto exit
