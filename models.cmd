@@ -75,11 +75,11 @@ if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="vivoy81" call :msg &set opt=2 &call %mtk
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
-if /i "%search%"==SM-A705 set "mbn=firehose\SM-A705.elf" &call %qcm%
-if /i "%search%"==SM-M115 set "mbn=firehose\SM-M115.mbn" &call %qcm%
-if /i "%search%"==SM-A115 set "mbn=firehose\SM-A115.mbn" &call %qcm%
-if /i "%search%"==SM-A025 set "mbn=firehose\SM-A025.mbn" &call %qcm%
-if /i "%search%"==SM-A015 set "mbn=firehose\SM-A015.mbn" &call %qcm%
+if /i "%search%"==SM-A705 set "mbn=firehose\SM-A705.elf" &set opt=1 &call %qcm%
+if /i "%search%"==SM-M115 set "mbn=firehose\SM-M115.mbn" &set opt=1 &call %qcm%
+if /i "%search%"==SM-A115 set "mbn=firehose\SM-A115.mbn" &set opt=1 &call %qcm%
+if /i "%search%"==SM-A025 set "mbn=firehose\SM-A025.mbn" &set opt=1 &call %qcm%
+if /i "%search%"==SM-A015 set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm%
 ::----------------------------------------------------------------------------------------
 :: for audio downloader
 echo "%model%" | findstr /i https && goto audio
