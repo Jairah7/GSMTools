@@ -3,6 +3,9 @@ if %opt%==1 goto sfrp
 
 :sfrp
 call :qport
+if not exist "%userprofile%\My Documents\Qualcomm_backup" mkdir "%userprofile%\My Documents\Qualcomm_backup"
+echo Please wait backing up persistent >>logs.txt
+emmcdl -p %port% -f "%mbn%" -d persistent "%userprofile%\My Documents\Qualcomm_backup"
 echo Removing Samsung FRP...>>logs.txt
 emmcdl -p %port% -f "%mbn%" -e persistent >>logs.txt
 goto exit 
