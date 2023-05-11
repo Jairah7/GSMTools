@@ -16,7 +16,7 @@ if /i "%search%"=="TFT" set "url=https://drive.google.com/file/d/1C05zYjtFFSUHX6
 if /i "%search%"=="TC12N1" set "url=https://drive.google.com/u/0/uc?id=1DpY_IlEbK4Zqq-7TitmBNZqv7vK5cC9-&export=download" &goto software
 if /i "%search%"=="eFixer" set "url=https://www.mediafire.com/file/seqtzttwvvs03kf/OPPO_A3s_%2526_A5_2020_%2526_A7_eFixer_Tool.rar/file" &goto software
 if /i "%search%"=="iFRPFILE_AIO_v2.8.6" set "url=https://www.mediafire.com/file/4k75elmcy6gloit/iFRPFILE_AIO_v2.8.6.zip/file" &goto software 
-::Manual Referrences
+::Manual Referrences 
 if /i "%search%"=="vivo" set "url=https://www.youtube.com/watch?v=aIJucmnFAV4" &goto found
 if /i "%search%"=="vivoT25G" set "url=https://www.youtube.com/watch?v=rTaiOILG2t8" &goto found
 if /i "%search%"=="vivoT2X5G" set "url=https://www.youtube.com/watch?v=rTaiOILG2t8" &goto found
@@ -44,7 +44,7 @@ if /i "%search%"=="InfinixZero5g" set "url=https://www.youtube.com/watch?v=okAmW
 if /i "%search%"=="ItellA26" set "url=https://www.youtube.com/watch?v=T7ktHL0ifmA" &goto found
 if /i "%search%"=="ItelVision1Pro" set "url=https://www.youtube.com/watch?v=rbzcqzNJ6bk" &goto found
 ::-----------------------------------------------------------------------------------------------------------------------------------------------
-::direct process
+::direct process for mtk
 if /i "%search%"=="crashtobrom" call :msg &set opt=17 &call %mtk%
 if /i "%search%"=="mtkremovevivodemo" call :msg &set opt=14 &call %mtk%
 if /i "%search%"=="mtkrebuilduserdata" call :msg &set opt=13 &call %mtk% 
@@ -72,10 +72,20 @@ if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
-if /i "%search%"=="vivoy81" call :msg &set opt=2 &call %mtk%
+if /i "%search%"=="vivoy81" call :msg &set opt=2 &call %mtk
+::direct process for qualcomm
+:: ---------------------------------------------------------------------------------------
+if /i "%search%"==SM-A705 set "mbn=firehose\SM-A705.elf" &call %qcm%
+if /i "%search%"==SM-M115 set "mbn=firehose\SM-M115.mbn" &call %qcm%
+if /i "%search%"==SM-A115 set "mbn=firehose\SM-A115.mbn" &call %qcm%
+if /i "%search%"==SM-A025 set "mbn=firehose\SM-A025.mbn" &call %qcm%
+if /i "%search%"==SM-A015 set "mbn=firehose\SM-A015.mbn" &call %qcm%
+::----------------------------------------------------------------------------------------
+:: for audio downloader
 echo "%model%" | findstr /i https && goto audio
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
 goto exit
+
 ::----------------------------------------------------------------------------------------
 
 :found
