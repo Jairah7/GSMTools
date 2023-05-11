@@ -14,6 +14,7 @@ set #=122
 :sport
 timeout 1 >nul &echo Waiting for device...%#% >logs.txt
 set /a #-=1
+if %#%==0 goto nodevice
 reg query HKLM\hardware\devicemap\SERIALCOMM >%temp%\tmp
 findstr /I "QCUSB" %temp%\tmp >%temp%\tmp1 || goto sport
 for /f "tokens=3" %%G IN (%temp%\tmp1) DO set "port=%%G" &del /f %temp%\tmp1
@@ -32,5 +33,9 @@ goto exit
 :exit 
 taskkill /f /im cmd.exe
 exit
+
+:nodevice
+%msg% "Sorry No Device Detected." "Serial Port" /T:5
+goto exit
 
 
