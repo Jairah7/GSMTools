@@ -12,7 +12,7 @@ goto exit
 set port=
 set #=122
 :sport
-timeout 1 >nul &echo Waiting for device...%#% >>logs.txt
+timeout 1 >nul &echo Waiting for device...%#% >logs.txt
 set /a #-=1
 reg query HKLM\hardware\devicemap\SERIALCOMM >%temp%\tmp
 findstr /I "QCUSB" %temp%\tmp >%temp%\tmp1 || goto sport
