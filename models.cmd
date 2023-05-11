@@ -8,7 +8,7 @@ set search=%search: =%
 ::Software free
 if /i "%search%"=="Zenon_1.8" set "url=https://www.mediafire.com/file/a0i6ize4mmazs35/Zenon_1.8.zip/file" &goto software 
 if /i "%search%"=="winrain" set "url=https://www.mediafire.com/file/ur7borqouxks2x0/Winrain.rar/file" &goto software
-if /i "%search%"=="LCDPRICEList" "set "url=https://www.mediafire.com/file/mejpg326k69k6og/TC_LCD_Market_Price_List.exe/file" &goto software
+if /i "%search%"=="LCDPRICEList" set "url=https://www.mediafire.com/file/mejpg326k69k6og/TC_LCD_Market_Price_List.exe/file" &goto software
 if /i "%search%"=="GSMdrivers" set "url=https://www.mediafire.com/file/l4700etvt3l5928/GSM_Drivers_Installer_setup.rar/file" &goto software
 if /i "%search%"=="AndroidUtility" set "url=https://www.mediafire.com/file/m8mok08ashdttxe/AndroidUtility.v104.7z/file" &goto software
 if /i "%search%"=="Samfw" set "url=https://www.mediafire.com/file/upaiwadhmstm6js/SamFwToolSetup_v4.6.zip/file" &goto software
