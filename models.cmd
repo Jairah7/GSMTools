@@ -72,7 +72,7 @@ if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
-if /i "%search%"=="vivo81" call :msg &set opt=2 &call %mtk
+if /i "%search%"=="vivoy81" call :msg &set opt=1 &call %mtk
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
 if /i "%search%"=="SM-A705" set "mbn=firehose\SM-A705.elf" &set opt=1 &call %qcm%
