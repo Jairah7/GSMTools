@@ -82,7 +82,7 @@ if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set opt=1 &call %qcm
 if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm%
 ::----------------------------------------------------------------------------------------
 :: for audio downloader
-echo "%model%" | findstr /i https && goto audio
+echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
 goto exit
 
@@ -102,7 +102,19 @@ start "" "%url%"
 echo  "%model%" software found. Please wait for pop-up link...ok >logs.txt
 goto exit
 
+
+
+
+
+:download
+%msg% "Select Yes for Audio and No for Video" "TC-Downloader" /I:Q /B:N >tmp
+set /p opt=<tmp &del /f tmp
+if %opt%==yes goto audio
+if %opt%==no goto video
+if %opt%==cancel goto exit
+
 :audio
+echo Downloading audio...>logs.txt
 ping -n 1 google.com | findstr /i try >nul && echo No Internet Connection >logs.txt && goto exit
 if not exist plugins\ffmpeg.exe echo Please wait downloading requirements this may take time for now but next download no need to download requirements....>logs.txt & PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/garfiedhuang/VideoTools/master/VideoTools/ffmpeg/bin/ffmpeg.exe','plugins\ffmpeg.exe')"
 if not exist "C:\Users\%username%\Desktop\audio" mkdir "C:\Users\%username%\Desktop\audio"
@@ -110,6 +122,17 @@ plugins\yt.exe -i -x -c -w --no-warnings --audio-format mp3 --geo-bypass --yes-p
 if %errorlevel% NEO 0 echo Downloading Failed. Please wait trying to update downloader... && yt -U >>logs.txt 
 echo downloading...finished. >>logs.txt
 goto exit
+
+:video
+ping -n 1 google.com | findstr /i try >nul && echo No Internet Connection >logs.txt && goto exit
+if not exist plugins\ffmpeg.exe echo Please wait downloading requirements this may take time for now but next download no need to download requirements....>logs.txt & PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/garfiedhuang/VideoTools/master/VideoTools/ffmpeg/bin/ffmpeg.exe','plugins\ffmpeg.exe')"
+if not exist "C:\Users\%username%\Desktop\video" mkdir "C:\Users\%username%\Desktop\video"
+echo Downloading Video...>>logs.txt
+plugins\yt.exe -i -c -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" %pl% -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%"
+if %errorlevel% NEQ 0 echo Error downloading trying method 2 >>logs.txt &echo. &plugins\yt.exe -i -c %pl% -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%"
+if %errorlevel% NEQ 0 echo Sorry downloading failed. >>logs.txt
+echo finished!
+timeout 5 >nul
 
 :exit 
 taskkill /f /im python.exe
