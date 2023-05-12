@@ -1,4 +1,4 @@
-::last edit M5D11Y23f
+::last edit M5D11Y23g
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -119,8 +119,8 @@ ping -n 1 google.com | findstr /i try >nul && echo No Internet Connection >logs.
 if not exist plugins\ffmpeg.exe echo Please wait downloading requirements this may take time for now but next download no need to download requirements....>logs.txt & PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/garfiedhuang/VideoTools/master/VideoTools/ffmpeg/bin/ffmpeg.exe','plugins\ffmpeg.exe')"
 if not exist "C:\Users\%username%\Desktop\audio" mkdir "C:\Users\%username%\Desktop\audio"
 plugins\yt.exe -i -x -c -w --no-warnings --audio-format mp3 --geo-bypass --yes-playlist --audio-quality 5 -o "C:\Users\%username%\Desktop\audio\%%(title)s.%%(ext)s" "%search%" >>logs.txt
-if %errorlevel% NEO 0 echo Downloading Failed. Please wait trying to update downloader... && yt -U >>logs.txt 
-echo downloading...finished. >>logs.txt
+if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for TC-Downloader >>logs.txt &yt - U  >>logs.txt 
+echo downloading audio finished >>logs.txt
 goto exit
 
 :video
@@ -130,8 +130,8 @@ if not exist "C:\Users\%username%\Desktop\video" mkdir "C:\Users\%username%\Desk
 echo Downloading Video...>>logs.txt
 plugins\yt.exe -i -c -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
 if %errorlevel% NEQ 0 echo Error downloading trying method 2 >>logs.txt &echo. &plugins\yt.exe -i -c --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
-if %errorlevel% NEQ 0 echo Sorry downloading failed. >>logs.txt
-echo finished! >>logs.txt
+if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for TC-Downloader >>logs.txt &yt - U  >>logs.txt
+echo downloading video finished >>logs.txt
 goto exit
 
 :exit 
