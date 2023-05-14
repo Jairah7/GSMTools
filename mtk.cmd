@@ -1,4 +1,4 @@
-::last update M5D11Y23
+::last update M5D13Y23
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
 if %opt%==3 goto cmtk
@@ -65,7 +65,13 @@ type logs.txt | findstr /i success && echo  Rebuilding Userdata success >>logs.t
 goto exit
 
 :mprivacy
-echo Please use "gui" to backup nvdata - recommended >>logs.txt
+if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
+%msg% "Please Backup nvdata first - recommended" "TC-Backup" /I:Q /B:N >tmp
+set /p sel=<tmp &del /f tmp
+if %sel%==yes echo ***%date%-%time% Please wait backing nvdata...*** >>logs.txt &%mtk_process% r nvdata "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==no goto removeprivacy
+if %sel%==cancel goto exit
+:removeprivacy
 echo *** %date%-%time% Please wait Removing privacy for mtk device *** >>logs.txt
 %mtk_process% e nvdata >>logs.txt
 type logs.txt | findstr /i failed && echo Removing privacy failed >>logs.txt && goto exit
@@ -145,7 +151,13 @@ goto exit
 :sfrp
 ::format
 echo. >>logs.txt
-echo  Please use "gui" to backup persistent - [recommended] >>logs.txt
+if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
+%msg% "Please Backup persistent first - recommended" "TC-Backup" /I:Q /B:N >tmp
+set /p sel=<tmp &del /f tmp
+if %sel%==yes echo ***%date%-%time% Please wait backing persistent...*** >>logs.txt &%mtk_process% r persistent "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==no goto removesfrp
+if %sel%==cancel goto exit
+:removesfrp
 echo *** %date%-%time% Formating FRP for mtk samsung *** >>logs.txt
 %mtk_process%  e persistent >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
@@ -155,7 +167,13 @@ goto exit
 :hfrp
 ::format
 echo. >>logs.txt
-echo Please use "gui" to backup oeminfo >>recommended >>logs.txt
+if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
+%msg% "Please Backup oeminfo first - recommended" "TC-Backup" /I:Q /B:N >tmp
+set /p sel=<tmp &del /f tmp
+if %sel%==yes echo ***%date%-%time% Please wait backing oeminfo...*** >>logs.txt &%mtk_process% r oeminfo "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==no goto removeoem
+if %sel%==cancel goto exit
+:removeoem
 echo *** %date%-%time% Formating  huawei id account*** >>logs.txt
 %mtk_process%  e oeminfo >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
@@ -165,7 +183,13 @@ goto exit
 :xfrp
 ::format
 echo. >>logs.txt
-echo Please use "gui" to backup persist - [recommended] >>logs.txt
+if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
+%msg% "Please Backup persist first - recommended" "TC-Backup" /I:Q /B:N >tmp
+set /p sel=<tmp &del /f tmp
+if %sel%==yes echo ***%date%-%time% Please wait backing persist...*** >>logs.txt &%mtk_process% r persist "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==no goto removemi
+if %sel%==cancel goto exit
+:removemi
 echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
 %mtk_process%  e persist >>logs.txt
 type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
