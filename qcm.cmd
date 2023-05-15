@@ -1,12 +1,17 @@
-::last update M5D15Y23a
+::last update M5D15Y23b
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 
 :qmanualsf
+if exist tc.dll goto qms
 if not exist qcm\files.rar %msg% "Please wait downloading requirements..." "Downloading" /T:3
 if not exist qcm\files.rar PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/files.rar','qcm\files.rar')"  >nul 2>&1
+if exist qcm\files.rar echo Please wait downloading requirements...success
+echo Please wait extracting...>logs.txt
 if exist qcm\files.rar plugins\7zip\7z x -y qcm\files.rar -oqcm >nul 2>&1
+echo Please wait extracting...ok >logs.txt
 if %errorlevel% NEQ 0 echo Error: Downloading failed >>logs.txt &goto exit
+:qms
 echo %msg% "Please wait for pop up folder and browse your firehose/mbn file" "Firehose" /T:3
 echo Please wait for pop up folder and browse your firehose/mbn file >logs.txt
 call :browse
