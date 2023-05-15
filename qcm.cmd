@@ -1,6 +1,40 @@
 ::last update M5D15Y23c
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
+if %opt%==3 goto qforceerase
+
+
+
+:qforceerase
+echo %msg% "Please wait for pop up folder and browse your loader. ex: mbn" "Firehose" /T:3
+echo Please wait for pop up folder and browse your loader. ex: mbn >logs.txt
+call :browse
+call :qport
+set "mbn=%file%"
+set "qdir=C:\Users\%username%\Documents\TC-Backup\Qualcomm"
+if not exist "%qdir%" mkdir "%qdir%"
+echo Please wait backing up security partition ...
+%qcm_process%  -p %port% -f "%mbn%" -d nvram -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d nvdata -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d modemst1 -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d modemst2 -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d fsg -o "%qdir%" >>logs.txt
+echo Please wait reading partition address...>>logs.txt
+%qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "config" >%temp%\tmp
+if %errorlevel% NEQ 0 echo Please wait reading partition address...failed >>logs.txt &goto exit
+for /f "tokens=7" %%C IN (tmp\tmp) DO set "frp=%%C"
+echo ^<?xml version="1.0"?^>>qcm\format.xml
+echo ^<data^>>>qcm\format.xml
+echo   ^<erase physical_partition_number="0" start_sector="%frp%" num_partition_sectors="32" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\format.xml
+%msg% "Warning force erase is risky. Do you want to continue?" "Qualcomm Force Erase" /I:Q /B:Y | findstr No && goto exit
+%qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "userdata" >%temp%\tmp
+for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
+echo   ^<erase physical_partition_number="0" start_sector="%line%" num_partition_sectors="1000000" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\format.xml
+echo ^</data^>>>qcm\format.xml
+echo Erasing Userdata + FRP... >>logs.txt
+%qcm_process2% --port=\\.\%port% --sendxml="qcm\format.xml" --search_path="qcm\" --zlpawarehost=1 --loglevel=0 >nul 2>&1
+if %errorlevel% NEQ 0 (echo Erasing Userdata + FRP...ok >>logs.txt) else (echo Erasing Userdata + FRP...failed >>logs.txt)
+goto exit
 
 :qmanualsf
 if exist tc.dll goto qms
@@ -12,8 +46,8 @@ if exist qcm\files.rar plugins\7zip\7z x -y qcm\files.rar -oqcm >nul 2>&1
 echo Please wait extracting...ok >logs.txt
 if %errorlevel% NEQ 0 echo Error: Downloading failed >>logs.txt &goto exit
 :qms
-echo %msg% "Please wait for pop up folder and browse your firehose/mbn file" "Firehose" /T:3
-echo Please wait for pop up folder and browse your firehose/mbn file >logs.txt
+echo %msg% "Please wait for pop up folder and browse your loader. ex. mbn" "Firehose" /T:3
+echo Please wait for pop up folder and browse your loader. ex: mbn >logs.txt
 call :browse
 call :qport
 set "mbn=%file%"
