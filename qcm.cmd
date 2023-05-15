@@ -1,4 +1,4 @@
-::last update M5D15Y23f
+::last update M5D15Y23h
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -22,16 +22,16 @@ echo Please wait reading partition address...>>logs.txt
 %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "config" >%temp%\tmp
 if %errorlevel% NEQ 0 echo Please wait reading partition address...failed >>logs.txt &goto exit
 for /f "tokens=7" %%C IN (%temp%\tmp) DO set "frp=%%C"
-echo ^<?xml version="1.0"?^>>qcm\format.xml
-echo ^<data^>>>qcm\format.xml
-echo   ^<erase physical_partition_number="0" start_sector="%frp%" num_partition_sectors="32" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\format.xml
+echo ^<?xml version="1.0"?^>>qcm\tc.xml
+echo ^<data^>>>qcm\tc.xml
+echo   ^<erase physical_partition_number="0" start_sector="%frp%" num_partition_sectors="32" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\tc.xml
 %msg% "Warning force erase is risky. Do you want to continue?" "Qualcomm Force Erase" /I:Q /B:Y | findstr No && goto exit
 %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "userdata" >%temp%\tmp
 for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
-echo   ^<erase physical_partition_number="0" start_sector="%line%" num_partition_sectors="1000000" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\format.xml
-echo ^</data^>>>qcm\format.xml
+echo   ^<erase physical_partition_number="0" start_sector="%line%" num_partition_sectors="1000000" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\tc.xml
+echo ^</data^>>>qcm\tc.xml
 echo Erasing Userdata + FRP... >>logs.txt
-qcm\fhl --port=\\.\%port% --sendxml="qcm\format.xml" --search_path="qcm\" --zlpawarehost=1 --loglevel=0 >nul 2>&1
+qcm\fhl --port=\\.\%port% --sendxml="qcm\tc.xml" --search_path="qcm\" --zlpawarehost=1 --loglevel=0 >nul 2>&1
 if %errorlevel% NEQ 0 (echo Erasing Userdata + FRP...ok >>logs.txt) else (echo Erasing Userdata + FRP...failed >>logs.txt)
 goto exit
 
