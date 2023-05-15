@@ -1,4 +1,4 @@
-::last edit M5D13Y23
+::last edit M5D15Y23
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -78,6 +78,7 @@ if /i "%search%"=="vivoy81" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="huaweiy6pro" call :msg &set opt=8 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
+if /i "%search%"=="QualcommManualSafeformat" set opt=2 &call %qcm% 
 if /i "%search%"=="SM-A705" set "mbn=firehose\SM-A705.elf" &set opt=1 &call %qcm%
 if /i "%search%"=="SM-M115" set "mbn=firehose\SM-M115.mbn" &set opt=1 &call %qcm%
 if /i "%search%"=="SM-A115" set "mbn=firehose\SM-A115.mbn" &set opt=1 &call %qcm%
