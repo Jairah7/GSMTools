@@ -22,7 +22,7 @@ echo Please wait backing up security partition ...
 echo Please wait reading partition address...>>logs.txt
 %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "config" >%temp%\tmp
 if %errorlevel% NEQ 0 echo Please wait reading partition address...failed >>logs.txt &goto exit
-for /f "tokens=7" %%C IN (tmp\tmp) DO set "frp=%%C"
+for /f "tokens=7" %%C IN (%temp%\tmp) DO set "frp=%%C"
 echo ^<?xml version="1.0"?^>>qcm\format.xml
 echo ^<data^>>>qcm\format.xml
 echo   ^<erase physical_partition_number="0" start_sector="%frp%" num_partition_sectors="32" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\format.xml
