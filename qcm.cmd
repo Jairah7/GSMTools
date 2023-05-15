@@ -1,4 +1,4 @@
-::last update M5D15Y23i
+::last update M5D15Y23j
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -25,7 +25,7 @@ for /f "tokens=7" %%C IN (%temp%\tmp) DO set "frp=%%C"
 echo ^<?xml version="1.0"?^>>qcm\tc.xml
 echo ^<data^>>>qcm\tc.xml
 echo   ^<erase physical_partition_number="0" start_sector="%frp%" num_partition_sectors="32" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\tc.xml
-%msg% "Warning force erase is risky. Do you want to continue?" "Qualcomm Force Erase" /I:Q /B:Y | findstr No && goto exit
+%msg% "Warning force erase is risky. Do you want to continue?" "Qualcomm Force Erase" /I:Q /B:Y | findstr "no" &&goto exit
 %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "userdata" >%temp%\tmp
 for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
 echo   ^<erase physical_partition_number="0" start_sector="%line%" num_partition_sectors="1000000" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\tc.xml
