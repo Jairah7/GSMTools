@@ -1,4 +1,4 @@
-::last update M5D15Y23d
+::last update M5D15Y23e
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -32,7 +32,7 @@ for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
 echo   ^<erase physical_partition_number="0" start_sector="%line%" num_partition_sectors="1000000" SECTOR_SIZE_IN_BYTES="512" /^>>>qcm\format.xml
 echo ^</data^>>>qcm\format.xml
 echo Erasing Userdata + FRP... >>logs.txt
-%qcm_process2% --port=\\.\%port% --sendxml="qcm\format.xml" --search_path="qcm\" --zlpawarehost=1 --loglevel=0 >nul 2>&1
+qcm\fhl --port=\\.\%port% --sendxml="qcm\format.xml" --search_path="qcm\" --zlpawarehost=1 --loglevel=0 >nul 2>&1
 if %errorlevel% NEQ 0 (echo Erasing Userdata + FRP...ok >>logs.txt) else (echo Erasing Userdata + FRP...failed >>logs.txt)
 goto exit
 
