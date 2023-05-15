@@ -1,18 +1,17 @@
-::last update M5D15Y23
+::last update M5D15Y23a
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 
 :qmanualsf
+if not exist qcm\files.rar %msg% "Please wait downloading requirements..." "Downloading" /T:3
+if not exist qcm\files.rar PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/files.rar','qcm\files.rar')"  >nul 2>&1
+if exist qcm\files.rar plugins\7zip\7z x -y qcm\files.rar -oqcm >nul 2>&1
+if %errorlevel% NEQ 0 echo Error: Downloading failed >>logs.txt &goto exit
 echo %msg% "Please wait for pop up folder and browse your firehose/mbn file" "Firehose" /T:3
 echo Please wait for pop up folder and browse your firehose/mbn file >logs.txt
 call :browse
 call :qport
 set "mbn=%file%"
-echo "%mbn%"
-%msg% "Please wait downloading requirements..." "Downloading" /T:3
-if not exist qcm\files.rar PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/files.rar','qcm\files.rar')"  >nul 2>&1
-if exist qcm\files.rar plugins\7zip\7z x -y qcm\files.rar -oqcm >nul 2>&1
-if %errorlevel% NEQ 0 echo Error: Downloading failed >>logs.txt &goto exit
 echo %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "cache" >%temp%\tmp
 for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
 %qcm_process% -p %port% -f "%mbn%" -d %line% 30000 -o qcm\cache >nul 2>&1
