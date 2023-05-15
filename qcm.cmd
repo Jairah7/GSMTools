@@ -1,4 +1,4 @@
-::last update M5D15Y23b
+::last update M5D15Y23c
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 
@@ -17,7 +17,7 @@ echo Please wait for pop up folder and browse your firehose/mbn file >logs.txt
 call :browse
 call :qport
 set "mbn=%file%"
-echo %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "cache" >%temp%\tmp
+%qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "cache" >%temp%\tmp
 for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
 %qcm_process% -p %port% -f "%mbn%" -d %line% 30000 -o qcm\cache >nul 2>&1
 echo Wiping userdata...>>logs.txt
