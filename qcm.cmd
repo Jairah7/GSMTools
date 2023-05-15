@@ -1,4 +1,4 @@
-::last update M5D15Y23e
+::last update M5D15Y23f
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -6,8 +6,7 @@ if %opt%==3 goto qforceerase
 
 
 :qforceerase
-echo %msg% "Please wait for pop up folder and browse your loader. ex: mbn" "Firehose" /T:3
-echo Please wait for pop up folder and browse your loader. ex: mbn >logs.txt
+echo Please wait for pop up folder and browse your loader. example: mbn >logs.txt
 call :browse
 call :qport
 set "mbn=%file%"
@@ -38,7 +37,6 @@ goto exit
 
 :qmanualsf
 if exist tc.dll goto qms
-if not exist qcm\files.rar %msg% "Please wait downloading requirements..." "Downloading" /T:3
 if not exist qcm\files.rar PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/files.rar','qcm\files.rar')"  >nul 2>&1
 if exist qcm\files.rar echo Please wait downloading requirements...success
 echo Please wait extracting...>logs.txt
@@ -46,7 +44,7 @@ if exist qcm\files.rar plugins\7zip\7z x -y qcm\files.rar -oqcm >nul 2>&1
 echo Please wait extracting...ok >logs.txt
 if %errorlevel% NEQ 0 echo Error: Downloading failed >>logs.txt &goto exit
 :qms
-echo %msg% "Please wait for pop up folder and browse your loader. ex. mbn" "Firehose" /T:3
+echo %msg% "Please wait for pop up folder and browse your loader. example: mbn" "Firehose" /T:3
 echo Please wait for pop up folder and browse your loader. ex: mbn >logs.txt
 call :browse
 call :qport
