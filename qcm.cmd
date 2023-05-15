@@ -1,5 +1,27 @@
 ::last update M5D11Y23c
 if %opt%==1 goto sfrp
+if %opt%==2 goto qmanualsf
+
+:qmanualsf
+echo %msg% "Please wait for pop up folder and browse your firehose/mbn file" "Firehose" /T:3
+echo Please wait for pop up folder and browse your firehose/mbn file >logs.txt
+call :browse
+call :qport
+set "mbn=%file%"
+echo "%mbn%"
+%msg% "Please wait downloading requirements..." "Downloading" /T:3
+if not exist qcm\files.rar PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/files.rar','qcm\files.rar')"  >nul 2>&1
+if exist qcm\files.rar plugins\7zip\7z x -y qcm\files.rar -oqcm >nul 2>&1
+if %errorlevel% NEQ 0 echo Error: Downloading failed >>logs.txt &goto exit
+echo %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "cache" >%temp%\tmp
+for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
+%qcm_process% -p %port% -f "%mbn%" -d %line% 30000 -o qcm\cache >nul 2>&1
+echo Wiping userdata...>>logs.txt
+%qcm_process% -p %port% -f "%mbn%" -b misc qcm\tc.dll >>logs.txt
+%qcm_process% -p %port% -f "%mbn%" -b userdata qcm\userdata >>logs.txt
+%qcm_process% -p %port% -f "%mbn%" -b userdata qcm\cache >>logs.txt
+if %errorlevel% NEQ 0 %qcm_process% -p %port% -f "%mbn%" -e userdata >nul 2>&1
+goto exit
 
 :sfrp
 call :qport
@@ -41,5 +63,12 @@ exit
 :nodevice
 %msg% "Sorry No Device Detected." "Serial Port" /T:5
 goto exit
+
+:browse
+set file=
+set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
+for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
+if "%file%"=="" echo No File is Chosen...>logs.txt &goto exit
+exit /b
 
 
