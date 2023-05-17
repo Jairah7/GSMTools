@@ -1,4 +1,4 @@
-::last update M5D15Y23j
+::last update M5D17Y23
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -10,9 +10,10 @@ echo Please wait for pop up folder and browse your loader. example: mbn >logs.tx
 call :browse
 call :qport
 set "mbn=%file%"
+:startprocess1
 set "qdir=C:\Users\%username%\Documents\TC-Backup\Qualcomm"
 if not exist "%qdir%" mkdir "%qdir%"
-echo Please wait backing up security partition ...
+echo Please wait backing up security partition ...>>logs.txt
 %qcm_process%  -p %port% -f "%mbn%" -d nvram -o "%qdir%" >>logs.txt
 %qcm_process%  -p %port% -f "%mbn%" -d nvdata -o "%qdir%" >>logs.txt
 %qcm_process%  -p %port% -f "%mbn%" -d modemst1 -o "%qdir%" >>logs.txt
@@ -49,6 +50,15 @@ echo Please wait for pop up folder and browse your loader. ex: mbn >logs.txt
 call :browse
 call :qport
 set "mbn=%file%"
+:startprocess2
+set "qdir=C:\Users\%username%\Documents\TC-Backup\Qualcomm"
+if not exist "%qdir%" mkdir "%qdir%"
+echo Please wait backing up security partition ...>>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d nvram -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d nvdata -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d modemst1 -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d modemst2 -o "%qdir%" >>logs.txt
+%qcm_process%  -p %port% -f "%mbn%" -d fsg -o "%qdir%" >>logs.txt
 %qcm_process% -p %port% -f "%mbn%" -gpt | findstr /I "cache" >%temp%\tmp
 for /f "tokens=7" %%C IN (%temp%\tmp) DO set "line=%%C"
 %qcm_process% -p %port% -f "%mbn%" -d %line% 30000 -o qcm\cache >nul 2>&1
