@@ -173,13 +173,16 @@ for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.emmc') DO echo
 goto exit
 
 :nodevice
-echo no device
-pause
+echo No Device >>logs.txt
+%msg% "No Device" "ADB" /T:3
+goto exit
 
 :exit 
 taskkill /f /im python.exe
 taskkill /f /im yt.exe
 taskkill /f /im ffplay.exe
-taskkill /f /im cmd.exe  
+taskkill /f /im cmd.exe
+taskkill /f /im adb.exe
+taskkill /f /im fastboot.exe
 exit
 
