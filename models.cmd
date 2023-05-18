@@ -1,4 +1,4 @@
-::last edit M5D19Y23
+::last edit M5D19Y23a
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -155,21 +155,21 @@ qcm\adb shell getprop ro.build.product >nul
 if %errorlevel% NEQ 0 timeout 1 >nul &goto adbwait
 :detected
 echo Waiting for device...detected >logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.product') DO echo Build Product:--------%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.state') DO echo SIM State [1,2]:------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.product') DO echo Build Product:----------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.state') DO echo SIM State [1,2]:-------%%G >>logs.txt
 for /F "tokens=*" %%G IN ('qcm\adb shell "service call iphonesubinfo 1 | toybox cut -d \"'\" -f2 | toybox grep -Eo '[0-9]' | toybox xargs | toybox sed 's/\ //g'"') DO echo IMEI number:----------%%G >>logs.txt
 for /F "tokens=3" %%G IN ('qcm\adb shell wm size') DO echo Screen Resolution:----%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.serialno')  DO echo Serial Number:--------%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.hardware') DO echo Chip Type:------------%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.display.id') DO echo Build Number:---------%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.version.release') DO echo Android Version :-----%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.version.security_patch') DO echo Security Patch:-------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.serialno')  DO echo Serial Number:----------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.hardware') DO echo Chip Type:---------------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.display.id') DO echo Build Number:-----------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.version.release') DO echo Android Version :--------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.version.security_patch') DO echo Security Patch:----------%%G >>logs.txt
 for /F "tokens=1" %%G IN ('qcm\adb shell getprop gsm.version.baseband') DO echo Baseband Version:-----%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop sys.usb.config') DO echo USB Configuration:----%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.operator.alpha') DO echo SIM Operator:--------%%G >>logs.txt
-for /F "tokens=3" %%G IN ('qcm\adb shell cat /proc/version') DO echo Kernel Version:-------%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.ddr') DO echo RAM Information:----%%G >>logs.txt
-for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.emmc') DO echo Rom Information:----%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop sys.usb.config') DO echo USB Configuration:------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.operator.alpha') DO echo SIM Operator:----------%%G >>logs.txt
+for /F "tokens=3" %%G IN ('qcm\adb shell cat /proc/version') DO echo Kernel Version:---------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.ddr') DO echo RAM Information:------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.emmc') DO echo Rom Information:------%%G >>logs.txt
 goto exit
 
 :nodevice
