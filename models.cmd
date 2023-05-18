@@ -1,4 +1,4 @@
-::last edit M5D15Y23a
+::last edit M5D19Y23
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -85,7 +85,8 @@ if /i "%search%"=="SM-M115" set "mbn=firehose\SM-M115.mbn" &set opt=1 &call %qcm
 if /i "%search%"=="SM-A115" set "mbn=firehose\SM-A115.mbn" &set opt=1 &call %qcm%
 if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set opt=1 &call %qcm%
 if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm%
-::----------------------------------------------------------------------------------------
+::--------------------------------for adb functions---------------------------------------
+if /i "%search%"=="adbreaddeviceinfo" goto adb 
 :: for audio downloader
 echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
@@ -138,6 +139,42 @@ if %errorlevel% NEQ 0 echo Error downloading trying method 2 >>logs.txt &echo. &
 if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for TC-Downloader >>logs.txt &yt - U  >>logs.txt
 echo downloading video finished >>logs.txt
 goto exit
+
+:adb
+set #=121
+echo Please wait initializing... >logs.txt
+qcm\adb kill-server >logs.txt
+qcm\adb start-server >logs.txt
+:adbwait
+set /a #-=1
+echo Waiting for device...%#% >logs.txt
+if %#%==110 echo Please check "Allow USB debugging on your device screen" >logs.txt 
+if %#%==100 echo Please check you driver >logs.txt
+if %#%==0 goto nodevice
+qcm\adb shell getprop ro.build.product >nul
+if %errorlevel% NEQ 0 timeout 1 >nul &goto adbwait
+:detected
+echo Waiting for device...detected >logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.product') DO echo Build Product:--------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.state') DO echo SIM State [1,2]:------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell "service call iphonesubinfo 1 | toybox cut -d \"'\" -f2 | toybox grep -Eo '[0-9]' | toybox xargs | toybox sed 's/\ //g'"') DO echo IMEI number:----------%%G >>logs.txt
+for /F "tokens=3" %%G IN ('qcm\adb shell wm size') DO echo Screen Resolution:----%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.serialno')  DO echo Serial Number:--------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.hardware') DO echo Chip Type:------------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.display.id') DO echo Build Number:---------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.version.release') DO echo Android Version :-----%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.build.version.security_patch') DO echo Security Patch:-------%%G >>logs.txt
+for /F "tokens=1" %%G IN ('qcm\adb shell getprop gsm.version.baseband') DO echo Baseband Version:-----%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop sys.usb.config') DO echo USB Configuration:----%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.operator.alpha') DO echo SIM Operator:--------%%G >>logs.txt
+for /F "tokens=3" %%G IN ('qcm\adb shell cat /proc/version') DO echo Kernel Version:-------%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.ddr') DO echo RAM Information:----%%G >>logs.txt
+for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.emmc') DO echo Rom Information:----%%G >>logs.txt
+goto exit
+
+:nodevice
+echo no device
+pause
 
 :exit 
 taskkill /f /im python.exe
