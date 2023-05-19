@@ -1,4 +1,4 @@
-::last edit M5D19Y23i
+::last edit M5D19Y23
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -90,7 +90,7 @@ if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit
 if /i "%search%"=="adbenablediag" call :adb &goto endiag 
 if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp 
 if /i "%search%"=="adbremovemdmlock" call :adb &goto mdmlock
-if /i "%search%"=="adbreboottorecoverymodel" call :adb &goto recovery 
+if /i "%search%"=="adbreboottorecoverymode" call :adb &goto recovery 
 if /i "%search%"=="adbreboottoedlmode" call :adb &goto adbedl
 ::-----------------------------------------------------------------------------------------
 :: for audio downloader
