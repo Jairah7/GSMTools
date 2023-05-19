@@ -1,4 +1,4 @@
-::last update M5D17Y23
+::last update M5D19Y23
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -103,6 +103,10 @@ if (%port%) NEQ () qcm\\fhl --port=\\.\%port% --reset --noprompt --setactivepart
 goto exit
 
 :exit 
+echo process stop %date%-%time% >stop
+taskkill /f /im adb.exe
+taskkill /f /im yt.exe
+taskkill /f /im ffmpeg.exe
 taskkill /f /im cmd.exe
 exit
 
