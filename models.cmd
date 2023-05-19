@@ -1,4 +1,4 @@
-::last edit M5D19Y23e
+::last edit M5D19Y23f
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -88,6 +88,7 @@ if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm
 ::--------------------------------for adb functions---------------------------------------
 if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit 
 if /i "%search%"=="adbenablediag" call :adb &goto endiag
+if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp
 :: for audio downloader
 echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
@@ -139,6 +140,13 @@ echo Downloading Video...>>logs.txt
 if %errorlevel% NEQ 0 echo Error downloading trying method 2 >>logs.txt &echo. &plugins\yt.exe -i -c --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
 if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for TC-Downloader >>logs.txt &yt - U  >>logs.txt
 echo downloading video finished >>logs.txt
+goto exit
+
+
+:adbfrp
+echo Removing FRP via adb...>logs.txt
+bin\adb shell content insert --uri content://settings/secure --bind name:s:user_setup_complete --bind value:s:1 >nul 2>&1
+if %errorlevel%==0 echo Removing FRP via adb...>logs.txt &timeout 1 >nul &qcm\adb shell input keyevent 3 >nul 2>&1
 goto exit
 
 :endiag
