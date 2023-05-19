@@ -1,4 +1,4 @@
-::last edit M5D19Y23d
+::last edit M5D19Y23e
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -86,7 +86,8 @@ if /i "%search%"=="SM-A115" set "mbn=firehose\SM-A115.mbn" &set opt=1 &call %qcm
 if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set opt=1 &call %qcm%
 if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm%
 ::--------------------------------for adb functions---------------------------------------
-if /i "%search%"=="adbreaddeviceinfo" goto adb 
+if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit 
+if /i "%search%"=="adbenablediag" call :adb &goto endiag
 :: for audio downloader
 echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
@@ -140,6 +141,11 @@ if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for
 echo downloading video finished >>logs.txt
 goto exit
 
+:endiag
+echo Please wait enabling diagnostic port... >>logs.txt
+qcm\adb shell am start -n com.longcheertel.midtest/com.longcheertel.midtest.Diag >>logs.txt
+goto exit
+
 :adb
 set #=121
 echo Please wait initializing... >logs.txt
@@ -171,7 +177,7 @@ for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.operator.alpha') DO ech
 for /F "tokens=3" %%G IN ('qcm\adb shell cat /proc/version') DO echo Kernel Version:----------%%G >>logs.txt
 for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.ddr') DO echo RAM Information:------%%G >>logs.txt
 for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.emmc') DO echo Rom Information:------%%G >>logs.txt
-goto exit
+exit /b
 
 :nodevice
 echo No Device >>logs.txt
