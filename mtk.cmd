@@ -1,4 +1,4 @@
-::last update M5D15Y23
+::last update M5D19Y23
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
 if %opt%==3 goto cmtk
@@ -204,6 +204,7 @@ if "%file%"=="" echo No file selected >>logs.txt &goto exit
 exit /b
 
 :exit
+echo process stop %date%-%time% >stop
 taskkill /f /im python.exe
 taskkill /f /im adb.exe
 taskkill /f /im fastboot.exe
