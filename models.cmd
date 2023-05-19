@@ -1,4 +1,4 @@
-::last edit M5D19Y23g
+::last edit M5D19Y23h
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -89,6 +89,7 @@ if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm
 if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit 
 if /i "%search%"=="adbenablediag" call :adb &goto endiag
 if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp
+if /i "%search%"=="adbremovemdmlock" call :adb &goto mdmlock
 :: for audio downloader
 echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
@@ -142,6 +143,11 @@ if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for
 echo downloading video finished >>logs.txt
 goto exit
 
+:mdmlock
+echo Removing MDM lock...>logs.txt
+adb shell pm uninstall --user 0 com.sec.enterprise.knox.cloudmdm.smdms >nul 2>&1
+if %errorlevel% NEQ 0 echo Removing MDM lock...ok >logs.txt
+goto exit
 
 :adbfrp
 echo Removing FRP via adb...>logs.txt
