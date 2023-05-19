@@ -1,4 +1,4 @@
-::last edit M5D19Y23j
+::last edit M5D19Y23k
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -149,36 +149,36 @@ goto exit
 :adbedl
 echo Rebooting to EDL Mode...>logs.txt
 qcm\adb reboot edl >logs.txt
-if %errorlevel% NEQ 0 echo Rebooting to EDL Mode...ok >logs.txt &goto exit
-echo Rebooting to EDL Mode...failed>logs.txt
+if %errorlevel% NEQ 0 echo Rebooting to EDL Mode...success >logs.txt &goto exit
+echo Rebooting to EDL Mode...done >logs.txt
 goto exit
 
 :recovery
 echo Rebooting to Recovery Mode...>logs.txt
 qcm\adb reboot recovery >logs.txt
-if %errorlevel% NEQ 0 echo Rebooting to Recovery Mode...ok >logs.txt &goto exit
-echo Rebooting to Recovery Mode...failed >logs.txt
+if %errorlevel% NEQ 0 echo Rebooting to Recovery Mode...success >logs.txt &goto exit
+echo Rebooting to Recovery Mode...done >logs.txt
 goto exit
 
 :mdmlock
 echo Removing MDM lock...>logs.txt
 qcm\adb shell pm uninstall --user 0 com.sec.enterprise.knox.cloudmdm.smdms >logs.txt
-if %errorlevel% NEQ 0 echo Removing MDM lock...ok >logs.txt &goto exit
-echo Removing MDM lock...failed >logs.txt
+if %errorlevel% NEQ 0 echo Removing MDM lock...success >logs.txt &goto exit
+echo Removing MDM lock...done >logs.txt
 goto exit
 
 :adbfrp
 echo Removing FRP via adb...>logs.txt
 qcm\adb shell content insert --uri content://settings/secure --bind name:s:user_setup_complete --bind value:s:1 >logs.txt
-if %errorlevel%==0 echo Removing FRP via adb...ok >logs.txt &timeout 1 >nul &qcm\adb shell input keyevent 3 >nul 2>&1 &goto exit
-echo Removing FRP via adb...failed >logs.txt
+if %errorlevel%==0 echo Removing FRP via adb...success >logs.txt &timeout 1 >nul &qcm\adb shell input keyevent 3 >nul 2>&1 &goto exit
+echo Removing FRP via adb...done >logs.txt
 goto exit
 
 :endiag
 echo Please wait enabling diagnostic port... >logs.txt
 qcm\adb shell am start -n com.longcheertel.midtest/com.longcheertel.midtest.Diag >logs.txt
-if %errorlevel% NEQ 0 echo Please wait enabling diagnostic port...ok >logs.txt &goto exit
-echo Please wait enabling diagnostic port...failed >logs.txt
+if %errorlevel% NEQ 0 echo Please wait enabling diagnostic port...success >logs.txt &goto exit
+echo Please wait enabling diagnostic port...done >logs.txt
 goto exit
 
 :adb
