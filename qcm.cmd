@@ -1,4 +1,4 @@
-::last update M5D19Y23a
+::last update M5D19Y23b
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
@@ -104,6 +104,7 @@ goto exit
 
 :exit 
 echo process stop %date%-%time% >stop
+if exist port_trace.txt del /f port_trace.txt 
 taskkill /f /im adb.exe
 taskkill /f /im yt.exe
 taskkill /f /im ffmpeg.exe
