@@ -1,4 +1,4 @@
-::last update M5D19Y23
+::last update M5D19Y23a
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
