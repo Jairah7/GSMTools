@@ -220,6 +220,7 @@ echo No Device >>logs.txt
 goto exit
 
 :exit 
+echo process stop %date%-%time% >stop
 taskkill /f /im python.exe
 taskkill /f /im yt.exe
 taskkill /f /im ffplay.exe
