@@ -1,4 +1,4 @@
-::last edit M5D19Y23h
+::last edit M5D19Y23i
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -87,9 +87,12 @@ if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set opt=1 &call %qcm
 if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm%
 ::--------------------------------for adb functions---------------------------------------
 if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit 
-if /i "%search%"=="adbenablediag" call :adb &goto endiag
-if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp
+if /i "%search%"=="adbenablediag" call :adb &goto endiag 
+if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp 
 if /i "%search%"=="adbremovemdmlock" call :adb &goto mdmlock
+if /i "%search%"=="adbreboottorecoverymodel" call :adb &goto recovery 
+if /i "%search%"=="adbreboottoedlmode" call :adb &goto adbedl
+::-----------------------------------------------------------------------------------------
 :: for audio downloader
 echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
@@ -143,21 +146,39 @@ if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for
 echo downloading video finished >>logs.txt
 goto exit
 
+:adbedl
+echo Rebooting to EDL Mode...>logs.txt
+qcm\adb reboot edl >logs.txt
+if %errorlevel% NEQ 0 echo Rebooting to EDL Mode...ok >logs.txt &goto exit
+echo Rebooting to EDL Mode...failed>logs.txt
+goto exit
+
+:recovery
+echo Rebooting to Recovery Mode...>logs.txt
+qcm\adb reboot recovery >logs.txt
+if %errorlevel% NEQ 0 echo Rebooting to Recovery Mode...ok >logs.txt &goto exit
+echo Rebooting to Recovery Mode...failed >logs.txt
+goto exit
+
 :mdmlock
 echo Removing MDM lock...>logs.txt
-adb shell pm uninstall --user 0 com.sec.enterprise.knox.cloudmdm.smdms >nul 2>&1
-if %errorlevel% NEQ 0 echo Removing MDM lock...ok >logs.txt
+qcm\adb shell pm uninstall --user 0 com.sec.enterprise.knox.cloudmdm.smdms >logs.txt
+if %errorlevel% NEQ 0 echo Removing MDM lock...ok >logs.txt &goto exit
+echo Removing MDM lock...failed >logs.txt
 goto exit
 
 :adbfrp
 echo Removing FRP via adb...>logs.txt
-bin\adb shell content insert --uri content://settings/secure --bind name:s:user_setup_complete --bind value:s:1 >nul 2>&1
-if %errorlevel%==0 echo Removing FRP via adb...>logs.txt &timeout 1 >nul &qcm\adb shell input keyevent 3 >nul 2>&1
+qcm\adb shell content insert --uri content://settings/secure --bind name:s:user_setup_complete --bind value:s:1 >logs.txt
+if %errorlevel%==0 echo Removing FRP via adb...ok >logs.txt &timeout 1 >nul &qcm\adb shell input keyevent 3 >nul 2>&1 &goto exit
+echo Removing FRP via adb...failed >logs.txt
 goto exit
 
 :endiag
-echo Please wait enabling diagnostic port... >>logs.txt
-qcm\adb shell am start -n com.longcheertel.midtest/com.longcheertel.midtest.Diag >>logs.txt
+echo Please wait enabling diagnostic port... >logs.txt
+qcm\adb shell am start -n com.longcheertel.midtest/com.longcheertel.midtest.Diag >logs.txt
+if %errorlevel% NEQ 0 echo Please wait enabling diagnostic port...ok >logs.txt &goto exit
+echo Please wait enabling diagnostic port...failed >logs.txt
 goto exit
 
 :adb
