@@ -1,4 +1,4 @@
-::last update M5D19Y23c
+::last update M5D19Y23d
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
@@ -104,6 +104,7 @@ if (%port%) NEQ () qcm\\fhl --port=\\.\%port% --reset --noprompt --setactivepart
 goto exit
 
 :exit 
+if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
 echo process stop %date%-%time% >stop
 if exist port_trace.txt del /f port_trace.txt 
 taskkill /f /im adb.exe
