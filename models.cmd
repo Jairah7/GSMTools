@@ -1,4 +1,4 @@
-::last edit M5D19Y23c
+::last edit M5D19Y23d
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -222,6 +222,7 @@ echo No Device >>logs.txt
 goto exit
 
 :exit 
+if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
 echo process stop %date%-%time% >stop
 taskkill /f /im python.exe
 taskkill /f /im yt.exe
