@@ -205,6 +205,7 @@ if "%file%"=="" echo No file selected >>logs.txt &goto exit
 exit /b
 
 :exit
+if exist testpoint.txt del /f testpoint.txt
 if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
 echo process stop %date%-%time% >stop
 taskkill /f /im python.exe
