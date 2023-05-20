@@ -1,4 +1,5 @@
-::last update M5D19Y23a
+::last update M5D19Y23b
+if exist testpoint.txt start "" "%tp%"
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
 if %opt%==3 goto cmtk
