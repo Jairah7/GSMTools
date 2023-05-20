@@ -104,6 +104,7 @@ if (%port%) NEQ () qcm\\fhl --port=\\.\%port% --reset --noprompt --setactivepart
 goto exit
 
 :exit 
+if exist testpoint.txt del /f testpoint.txt
 if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
 echo process stop %date%-%time% >stop
 if exist port_trace.txt del /f port_trace.txt 
