@@ -223,6 +223,7 @@ goto exit
 
 :exit 
 if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
+if exist testpoint.txt del /f testpoint.txt
 echo process stop %date%-%time% >stop
 taskkill /f /im python.exe
 taskkill /f /im yt.exe
