@@ -1,4 +1,5 @@
 ::last update M5D19Y23b
+if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
