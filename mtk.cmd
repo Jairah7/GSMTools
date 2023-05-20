@@ -1,4 +1,4 @@
-::last update M5D19Y23c
+::last update M5D19Y23d
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -205,6 +205,7 @@ if "%file%"=="" echo No file selected >>logs.txt &goto exit
 exit /b
 
 :exit
+if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
 echo process stop %date%-%time% >stop
 taskkill /f /im python.exe
 taskkill /f /im adb.exe
