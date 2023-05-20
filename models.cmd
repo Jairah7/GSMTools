@@ -1,4 +1,4 @@
-::last edit M5D19Y23la
+::last edit M5D19Y23lb
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -74,7 +74,7 @@ if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
-if /i "%search%"=="vivoy81" call :msg &set opt=1 &call %mtk%
+if /i "%search%"=="vivoy81" call :msg &set tp=https://i.imgur.com/blux1ds.png &set opt=1 &call %mtk%
 if /i "%search%"=="huaweiy6pro" call :msg &set opt=8 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
