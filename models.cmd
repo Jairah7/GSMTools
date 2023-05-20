@@ -1,4 +1,4 @@
-::last edit M5D19Y23lb
+::last edit M5D19Y23lc
 if exist logs.txt del logs.txt
 echo Created by drox-PH-Ceb for script just contact https://web.facebook.com/jairah.mazo.5/ >%fb%
 echo Created by drox-PH-Ceb for script just contact jairahmazo@gmail.com >%yt%
@@ -67,24 +67,24 @@ if /i "%search%"=="mtkhuaweiid" call :msg &set opt=6 &call %mtk%
 if /i "%search%"=="mtksamsungfrp" call :msg &set opt=5 &call %mtk%
 if /i "%search%"=="INFINIXHOT10PLAY" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="INFINIXHOT10sX689B" call :msg &set opt=2 &call %mtk%
-if /i "%search%"=="oppof7" call :msg &set opt=1 &call %mtk%
-if /i "%search%"=="oppoa83" call :msg &set opt=15 &call %mtk%
+if /i "%search%"=="oppof7" call :msg &set tp=https://i.imgur.com/Er7kRgg.png &set opt=1 &call %mtk%
+if /i "%search%"=="oppoa83" call :msg &set tp=https://i.imgur.com/b37VlNP.png &set opt=15 &call %mtk%
 if /i "%search%"=="oppoa5s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppoa12" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
-if /i "%search%"=="oppof5" call :msg &set opt=1 &call %mtk%
+if /i "%search%"=="oppof5" call :msg &set tp=https://i.imgur.com/l2qKRWL.png &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="vivoy81" call :msg &set tp=https://i.imgur.com/blux1ds.png &set opt=1 &call %mtk%
-if /i "%search%"=="huaweiy6pro" call :msg &set opt=8 &call %mtk%
+if /i "%search%"=="huaweiy6pro" call :msg &set tp=https://i.imgur.com/egmx5io.png &set opt=8 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
 if /i "%search%"=="QualcommManualSafeformat" echo You had selected Manual Safeformat >>logs.txt &set opt=2 &call %qcm% 
 if /i "%search%"=="QualcommForceErase" echo You had selected Qualcomm Force Erase >>logs.txt &set opt=3 &call %qcm%
-if /i "%search%"=="SM-A705" set "mbn=firehose\SM-A705.elf" &set opt=1 &call %qcm%
-if /i "%search%"=="SM-M115" set "mbn=firehose\SM-M115.mbn" &set opt=1 &call %qcm%
-if /i "%search%"=="SM-A115" set "mbn=firehose\SM-A115.mbn" &set opt=1 &call %qcm%
-if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set opt=1 &call %qcm%
-if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set opt=1 &call %qcm%
+if /i "%search%"=="SM-A705" set "mbn=firehose\SM-A705.elf" &set tp=https://i.imgur.com/iIYHuoN.png &set opt=1 &call %qcm%
+if /i "%search%"=="SM-M115" set "mbn=firehose\SM-M115.mbn" &set tp=https://i.imgur.com/AF950HT.png &set opt=1 &call %qcm%
+if /i "%search%"=="SM-A115" set "mbn=firehose\SM-A115.mbn" &set tp=https://i.imgur.com/8P4IFL9.png &set opt=1 &call %qcm%
+if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set tp=https://i.imgur.com/knQF3WS.png &set opt=1 &call %qcm%
+if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set tp=https://i.imgur.com/pA261iw.jpg &set opt=1 &call %qcm%
 ::--------------------------------for adb functions---------------------------------------
 if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit 
 if /i "%search%"=="adbenablediag" call :adb &goto endiag 
