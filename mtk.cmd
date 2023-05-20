@@ -1,4 +1,4 @@
-::last update M5D19Y23b
+::last update M5D19Y23c
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
