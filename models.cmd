@@ -1,4 +1,4 @@
-::last edit M5D19Y23d
+::last edit M5D21Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -77,6 +77,7 @@ if /i "%search%"=="oppof1s" call :msg &set opt=1 &call %mtk%
 if /i "%search%"=="oppof5" call :msg &set tp=https://i.imgur.com/l2qKRWL.png &set opt=1 &call %mtk%
 if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="vivoy81" call :msg &set tp=https://i.imgur.com/blux1ds.png &set opt=1 &call %mtk%
+if /i "%search%"=="redmia1" call :msg &set opt=8 &call %mtk%
 if /i "%search%"=="huaweiy6pro" call :msg &set tp=https://i.imgur.com/egmx5io.png &set opt=8 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
