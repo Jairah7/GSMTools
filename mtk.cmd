@@ -1,4 +1,4 @@
-::last update M5D19Y23d
+::last update M5D21Y23
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -24,8 +24,6 @@ if %opt%==17 goto crash2brom
 call :pre
 echo Please wait Crashing preloader to brom... >>logs.txt
 %mtk_process% plstage --preloader=%file% >>logs.txt
-type logs.txt | findstr /i failed && echo Crashing preloader to brom failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Crashing preloader to brom failed. >>logs.txt && goto exit
 goto exit
 
 :mformat
@@ -33,8 +31,6 @@ goto exit
 echo. >>logs.txt
 echo *** %date%-%time% Formating password only*** >>logs.txt
 %mtk_process%  e userdata >>logs.txt
-type logs.txt | findstr /i failed && echo Formating Password failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Formating Password success >>logs.txt && goto exit
 goto exit
 
 :msafeformat
@@ -42,15 +38,11 @@ goto exit
 echo. >>logs.txt
 echo *** %date%-%time% Removing password - safeformat *** >>logs.txt
 %mtk_process% w para mtk\password.dll >>logs.txt
-type logs.txt | findstr /i failed && echo Removing Password  failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Removing Password success >>logs.txt && goto exit
 goto exit
 
 :removedemo
 echo *** %date%-%time% Please wait removing demo for vivo device *** >>logs.txt
 %mtk_process% e backup >>logs.txt
-type logs.txt | findstr /i failed && echo Removing Demo failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Removing Demo success >>logs.txt && goto exit
 goto exit
 
 :mrebuild
@@ -61,8 +53,6 @@ PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com
 if exist mtk\rdata.rar plugins\7zip\7z x -y mtk\rdata.rar -omtk >>logs.txt
 :mrebuild
 if exist mtk\rdata %mtk_process% w userdata mtk\rdata >>logs.txt 
-type logs.txt | findstr /i failed && echo Rebuilding Userdata failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Rebuilding Userdata success >>logs.txt && goto exit
 goto exit
 
 :mprivacy
@@ -75,37 +65,27 @@ if %sel%==cancel goto exit
 :removeprivacy
 echo *** %date%-%time% Please wait Removing privacy for mtk device *** >>logs.txt
 %mtk_process% e nvdata >>logs.txt
-type logs.txt | findstr /i failed && echo Removing privacy failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Removing privacy success >>logs.txt && goto exit
 goto exit
 
 :relockbl
 echo *** %date%-%time% Please wait relocking bootloader for mtk device *** >>logs.txt
 %mtk_process% da seccfg lock >>logs.txt
-type logs.txt | findstr /i failed && echo relocking bootloader failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  relocking bootloader success >>logs.txt && goto exit
 goto exit
 
 :unlockbl
 echo *** %date%-%time% Please wait unlocking bootloader for mtk device *** >>logs.txt
 %mtk_process% da seccfg unlock >>logs.txt
-type logs.txt | findstr /i failed && echo unlocking bootloader failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  unlocking bootloader success >>logs.txt && goto exit
 goto exit
 
 :payload
 echo *** %date%-%time% Bypassing Auth *** >>logs.txt
 %mtk_process% payload >>logs.txt
-type logs.txt | findstr /i failed && echo Bypassing Auth failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Bypassing Auth success >>logs.txt && goto exit
 goto exit
 
 
 :gpt
 echo *** %date%-%time% Reading GPT *** >>logs.txt
 %mtk_process% printgpt >>logs.txt
-type logs.txt | findstr /i failed && echo Reading GPT failed >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Reading GPT success >>logs.txt && goto exit
 goto exit
 
 :smtk
@@ -114,8 +94,6 @@ if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
-type logs.txt | findstr /i failed && echo Removing Password and FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Removing Password and FRP success >>logs.txt && goto exit
 goto exit
 
 :cmtk
@@ -126,8 +104,6 @@ echo *** %date%-%time% Setting up into brom mode... *** >>logs.txt
 %mtk_process% crash >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
 %mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
-type logs.txt | findstr /i failed && echo Removing Password and FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Removing Password and FRP success >>logs.txt && goto exit
 goto exit
 
 :fmtk
@@ -136,8 +112,6 @@ if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Formating password and FRP *** >>logs.txt
 %mtk_process%  e userdata,frp >>logs.txt
-type logs.txt | findstr /i failed && echo Formating Password and FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Formating Password and FRP success >>logs.txt && goto exit
 goto exit
 
 :mfrp
@@ -145,8 +119,6 @@ goto exit
 echo. >>logs.txt
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 %mtk_process%  e frp >>logs.txt
-type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
 goto exit
 
 :sfrp
@@ -161,8 +133,6 @@ if %sel%==cancel goto exit
 :removesfrp
 echo *** %date%-%time% Formating FRP for mtk samsung *** >>logs.txt
 %mtk_process%  e persistent >>logs.txt
-type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
 goto exit
 
 :hfrp
@@ -177,8 +147,6 @@ if %sel%==cancel goto exit
 :removeoem
 echo *** %date%-%time% Formating  huawei id account*** >>logs.txt
 %mtk_process%  e oeminfo >>logs.txt
-type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
 goto exit
 
 :xfrp
@@ -193,8 +161,6 @@ if %sel%==cancel goto exit
 :removemi
 echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
 %mtk_process%  e persist >>logs.txt
-type logs.txt | findstr /i failed && echo Formating FRP failed. >>logs.txt && goto exit
-type logs.txt | findstr /i success && echo  Formating FRP success >>logs.txt && goto exit
 goto exit
 
 :pre
@@ -208,6 +174,7 @@ exit /b
 if exist testpoint.txt del /f testpoint.txt
 if exist logs.txt copy /y logs.txt logs\logs_%datetime%.txt
 echo process stop %date%-%time% >stop
+type logs.txt | findstr /i "Error" && echo Process Failed >>logs.txt || echo Process Success >>logs.txt
 taskkill /f /im python.exe
 taskkill /f /im adb.exe
 taskkill /f /im fastboot.exe
