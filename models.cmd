@@ -1,4 +1,4 @@
-::last edit M5D21Y23
+::last edit M6D09Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -96,6 +96,7 @@ if /i "%search%"=="adbremovemdmlock" call :adb &goto mdmlock
 if /i "%search%"=="adbreboottorecoverymode" call :adb &goto recovery 
 if /i "%search%"=="adbreboottoedlmode" call :adb &goto adbedl
 ::-----------------------------------------------------------------------------------------
+if /i "%search%"=="mtpbrowser" goto mtp
 :: for audio downloader
 echo "%model%" | findstr /i https && goto download
 echo Sorry "%search%" is not found.Please check referece in "Supported Model List" or just inform me so that i can add it in database. >>logs.txt
@@ -215,6 +216,41 @@ for /F "tokens=*" %%G IN ('qcm\adb shell getprop gsm.sim.operator.alpha') DO ech
 for /F "tokens=3" %%G IN ('qcm\adb shell cat /proc/version') DO echo Kernel Version: ---------- %%G >>logs.txt
 for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.ddr') DO echo RAM Information: ------ %%G >>logs.txt
 for /F "tokens=*" %%G IN ('qcm\adb shell getprop ro.boot.hardware.emmc') DO echo Rom Information: ------ %%G >>logs.txt
+exit /b
+
+:mtp
+cls
+set /p url=<"url.txt"
+call :checkmtp
+powershell -Command "(gc drivers\SAMSUNG_Android.inf) -%get% '%port%', 'VID_%vid%&PID_%pid%' | Out-File -encoding ASCII %inf%"
+echo %ProgramFiles(x86)% | find "x86" > NUL && set "install=drivers\install_x64" || set "install=drivers\install_x86"
+if "%install%"=="install_x64" echo YOU MUST Disable driver signature enforcement
+echo echo Installing drivers...>>logs.txt
+(
+echo @echo off
+echo %install% -i "-f=%inf%"
+echo echo Launching mtk browser...>>logs.txt
+echo %adk% -d "%vid%:%pid%"  -m "drox-PH-Ceb" -D "TC Manual_Direct" -u "%url%" -s "Ceb" 
+echo echo Cleaning drivers...>>logs.txt
+echo %install% -u "-f=%inf%" 
+)>drivers\run.cmd
+powershell "Start-Process drivers\run.cmd t -Verb RunAs" >nul &timeout 10 >nul &del /f drivers\run.cmd
+del /f drivers\install.inf 
+goto exit
+
+:checkmtp
+cls
+echo Waiting for device...%#% >>logs.txt
+set /a #+=1
+if %#%==120 goto nodevice
+timeout 1 >nul &set line=
+pnputil /enum-devices /connected /class WPD | find "Description" >%temp%\tmp
+if %errorlevel% NEQ 0 goto checkmtp
+for /f "usebackq tokens=3-5" %%A IN (%temp%\tmp) DO echo Device Found %%A %%B %%C >>logst.txt
+pnputil /enum-devices /connected /class WPD | find "VID" >%temp%\tmp || echo Sorry no VID and PID found >>logs.txt && goto exit
+for /f "tokens=3" %%G IN (%temp%\tmp) DO set line="%%G"
+set "vid=%line:~9,4%" &set "pid=%line:~18,4%"
+set #=0 
 exit /b
 
 :nodevice
