@@ -1,4 +1,4 @@
-::last update M8D29Y23
+::last update M9D29Y23
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -120,7 +120,9 @@ goto exit
 ::format
 echo. >>logs.txt
 echo *** %date%-%time% Formating FRP *** >>logs.txt
-%mtk_process%  e frp >>logs.txt
+call :pre
+%msg% "Browse your Preloader"
+%mtk_process% e frp --preloader=%file%
 goto exit
 
 :sfrp
