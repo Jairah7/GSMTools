@@ -1,4 +1,4 @@
-::last update M7D29Y23
+::last update M8D29Y23
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -38,9 +38,8 @@ goto exit
 echo. >>logs.txt
 call :pre
 echo  "Browse your Preloader" >>logs.txt
-%mtk_process% e frp --preloader=%file% >>logs.txt
 echo *** %date%-%time% Removing password - safeformat *** >>logs.txt
-%mtk_process% w para mtk\password.dll >>logs.txt
+%mtk_process% w para mtk\password.dll --preloader=%file% >>logs.txt
 goto exit
 
 :removedemo
