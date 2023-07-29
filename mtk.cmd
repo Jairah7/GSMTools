@@ -122,7 +122,7 @@ echo. >>logs.txt
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 call :pre
 %msg% "Browse your Preloader"
-%mtk_process% e frp --preloader=%file%
+%mtk_process% e frp --preloader=%file% >>logs.txt
 goto exit
 
 :sfrp
