@@ -1,4 +1,4 @@
-::last update M8D29Y23
+::last update M7D29Y23
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -54,7 +54,9 @@ if exist mtk\rdata echo *** %date%-%time% Please wait rebuilding Userdata for mt
 PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/rdata.rar','mtk\rdata.rar')" >>logs.txt
 if exist mtk\rdata.rar plugins\7zip\7z x -y mtk\rdata.rar -omtk >>logs.txt
 :mrebuild
-if exist mtk\rdata %mtk_process% w userdata mtk\rdata >>logs.txt 
+call :pre
+echo Please wait Crashing preloader to brom... >>logs.txt
+if exist mtk\rdata %mtk_process% w userdata mtk\rdata --preloader=%file% >>logs.txt 
 goto exit
 
 :mprivacy
