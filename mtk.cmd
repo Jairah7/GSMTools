@@ -74,7 +74,9 @@ goto exit
 
 :unlockbl
 echo *** %date%-%time% Please wait unlocking bootloader for mtk device *** >>logs.txt
-%mtk_process% da seccfg unlock >>logs.txt
+call :pre
+%msg% "Browse your Preloader"
+%mtk_process% da seccfg unlock --preloader=%file% >>logs.txt
 goto exit
 
 :payload
@@ -161,6 +163,7 @@ if %sel%==cancel goto exit
 :removemi
 echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
 call :pre
+%msg% "Browse your Preloader"
 %mtk_process% e persist --preloader=%file% >>logs.txt
 goto exit
 
