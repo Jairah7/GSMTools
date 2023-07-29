@@ -1,4 +1,5 @@
-::last update M7D29Y23
+::last update M8D29Y23
+set loader=
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -16,7 +17,6 @@ if %opt%==13 goto mrebuild
 if %opt%==14 goto removedemo
 if %opt%==15 goto msafeformat
 if %opt%==16 goto mformat
-if %opt%==17 goto crash2brom
 
 :crash2brom
 ::force to brom using preloader
@@ -29,22 +29,38 @@ goto exit
 :mformat
 ::format only
 echo. >>logs.txt
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process1 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process1
 echo *** %date%-%time% Formating password only*** >>logs.txt
-%mtk_process%  e userdata >>logs.txt
+%mtk_process%  e userdata %loader% >>logs.txt
 goto exit
 
 :msafeformat
 ::safeformat
 echo. >>logs.txt
-call :pre
-echo  "Browse your Preloader" >>logs.txt
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process2 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process2
 echo *** %date%-%time% Removing password - safeformat *** >>logs.txt
-%mtk_process% w para mtk\password.dll --preloader=%file% >>logs.txt
+%mtk_process% w para mtk\password.dll %loader% >>logs.txt
 goto exit
 
 :removedemo
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process3 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
 echo *** %date%-%time% Please wait removing demo for vivo device *** >>logs.txt
-%mtk_process% e backup >>logs.txt
+:process3
+%mtk_process% e backup %loader% >>logs.txt
 goto exit
 
 :mrebuild
@@ -54,124 +70,192 @@ if exist mtk\rdata echo *** %date%-%time% Please wait rebuilding Userdata for mt
 PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/rdata.rar','mtk\rdata.rar')" >>logs.txt
 if exist mtk\rdata.rar plugins\7zip\7z x -y mtk\rdata.rar -omtk >>logs.txt
 :mrebuild
-%msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5
-call :pre
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process4 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process4
 echo Please wait Rebuilding userdata... >>logs.txt
-if exist mtk\rdata %mtk_process% w userdata mtk\rdata --preloader=%file% >>logs.txt 
+if exist mtk\rdata %mtk_process% w userdata mtk\rdata %loader% >>logs.txt 
 goto exit
 
 :mprivacy
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process5 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process5
 if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
 %msg% "Please Backup nvdata first - recommended" "TC-Backup" /I:Q /B:N >tmp
 set /p sel=<tmp &del /f tmp
-if %sel%==yes echo ***%date%-%time% Please wait backing nvdata...*** >>logs.txt &%mtk_process% r nvdata "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==yes echo ***%date%-%time% Please wait backing nvdata...*** >>logs.txt &%mtk_process% r nvdata %loader% "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
 if %sel%==no goto removeprivacy
 if %sel%==cancel goto exit
 :removeprivacy
 echo *** %date%-%time% Please wait Removing privacy for mtk device *** >>logs.txt
-%mtk_process% e nvdata >>logs.txt
+%mtk_process% e nvdata %loader% >>logs.txt
 goto exit
 
 :relockbl
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process6 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+process6
 echo *** %date%-%time% Please wait relocking bootloader for mtk device *** >>logs.txt
-%mtk_process% da seccfg lock >>logs.txt
+%mtk_process% da seccfg lock %loader% >>logs.txt
 goto exit
 
 :unlockbl
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process7 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process7
 echo *** %date%-%time% Please wait unlocking bootloader for mtk device *** >>logs.txt
-call :pre
-%msg% "Browse your Preloader"
-%mtk_process% da seccfg unlock --preloader=%file% >>logs.txt
+%mtk_process% da seccfg unlock %loader% >>logs.txt
 goto exit
 
 :payload
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process8 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process8
 echo *** %date%-%time% Bypassing Auth *** >>logs.txt
-%mtk_process% payload >>logs.txt
+%mtk_process% payload %loader% >>logs.txt
 goto exit
 
 
 :gpt
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process9 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process9
 echo *** %date%-%time% Reading GPT *** >>logs.txt
-%mtk_process% printgpt >>logs.txt
+%mtk_process% printgpt %loader% >>logs.txt
 goto exit
 
 :smtk
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process10 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process10
 ::safeformat plus frp
 if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
-%mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
+%mtk_process% w para,frp mtk\password.dll,mtk\frp.exe %loader% >>logs.txt
 goto exit
 
 :cmtk
 if exist frp.txt goto mfrp
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process11 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
 ::safeformat
 echo. >>logs.txt
-echo *** %date%-%time% Setting up into brom mode... *** >>logs.txt
-%mtk_process% crash >>logs.txt
+:process11
 echo *** %date%-%time% Removing password and FRP *** >>logs.txt
-%mtk_process% w para,frp mtk\password.dll,mtk\frp.exe >>logs.txt
+%mtk_process% w para,frp mtk\password.dll,mtk\frp.exe %loader% >>logs.txt
 goto exit
 
 :fmtk
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process12 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process12
 ::format
 if exist frp.txt goto mfrp
 echo. >>logs.txt
 echo *** %date%-%time% Formating password and FRP *** >>logs.txt
-%mtk_process%  e userdata,frp >>logs.txt
+%mtk_process%  e userdata,frp %loader% >>logs.txt
 goto exit
 
 :mfrp
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process13 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process13
 ::format
 echo. >>logs.txt
 echo *** %date%-%time% Formating FRP *** >>logs.txt
-call :pre
-%msg% "Browse your Preloader"
-%mtk_process% e frp --preloader=%file% >>logs.txt
+%mtk_process% e frp %loader% >>logs.txt
 goto exit
 
 :sfrp
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process14 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process14
 ::format
 echo. >>logs.txt
 if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
 %msg% "Please Backup persistent first - recommended" "TC-Backup" /I:Q /B:N >tmp
 set /p sel=<tmp &del /f tmp
-if %sel%==yes echo ***%date%-%time% Please wait backing persistent...*** >>logs.txt &%mtk_process% r persistent "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==yes echo ***%date%-%time% Please wait backing persistent...*** >>logs.txt &%mtk_process% r persistent %loader% "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
 if %sel%==no goto removesfrp
 if %sel%==cancel goto exit
 :removesfrp
 echo *** %date%-%time% Formating FRP for mtk samsung *** >>logs.txt
-%mtk_process%  e persistent >>logs.txt
+%mtk_process%  e persistent %loader% >>logs.txt
 goto exit
 
 :hfrp
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process15 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process15
 ::format
 echo. >>logs.txt
 if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
 %msg% "Please Backup oeminfo first - recommended" "TC-Backup" /I:Q /B:N >tmp
 set /p sel=<tmp &del /f tmp
-if %sel%==yes echo ***%date%-%time% Please wait backing oeminfo...*** >>logs.txt &%mtk_process% r oeminfo "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==yes echo ***%date%-%time% Please wait backing oeminfo...*** >>logs.txt &%mtk_process% r oeminfo %loader% "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
 if %sel%==no goto removeoem
 if %sel%==cancel goto exit
 :removeoem
 echo *** %date%-%time% Formating  huawei id account*** >>logs.txt
-%mtk_process%  e oeminfo >>logs.txt
+%mtk_process%  e oeminfo %loader% >>logs.txt
 goto exit
 
 :xfrp
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto process16 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+:process16
 ::format
 echo. >>logs.txt
 if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
 %msg% "Please Backup persist first - recommended" "TC-Backup" /I:Q /B:N >tmp
 set /p sel=<tmp &del /f tmp
-if %sel%==yes echo ***%date%-%time% Please wait backing persist...*** >>logs.txt &%mtk_process% r persist "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
+if %sel%==yes echo ***%date%-%time% Please wait backing persist...*** >>logs.txt &%mtk_process% r persist %loader% "C:\Users\%username%\Documents\TC-Backup" >>logs.txt
 if %sel%==no goto removemi
 if %sel%==cancel goto exit
 :removemi
 echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
-call :pre
-%msg% "Browse your Preloader"
-%mtk_process% e persist --preloader=%file% >>logs.txt
+%mtk_process% e persist %loader% >>logs.txt
 goto exit
 
 :pre
