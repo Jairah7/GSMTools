@@ -54,8 +54,9 @@ if exist mtk\rdata echo *** %date%-%time% Please wait rebuilding Userdata for mt
 PowerShell -Command "(New-Object Net.WebClient).DownloadFile('https://github.com/Jairah7/GSMTools/raw/main/rdata.rar','mtk\rdata.rar')" >>logs.txt
 if exist mtk\rdata.rar plugins\7zip\7z x -y mtk\rdata.rar -omtk >>logs.txt
 :mrebuild
+%msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5
 call :pre
-echo Please wait Crashing preloader to brom... >>logs.txt
+echo Please wait Rebuilding userdata... >>logs.txt
 if exist mtk\rdata %mtk_process% w userdata mtk\rdata --preloader=%file% >>logs.txt 
 goto exit
 
