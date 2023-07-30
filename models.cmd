@@ -157,7 +157,8 @@ goto exit
 :miantirelock
 echo Processing anti-relock for Mi-account >>logs.txt
 qcm\adb shell pm uninstall --user 0 com.xiaomi.finddevice >>logs.txt
-echo Some devices need to install Drony.apy. Please install first if needed.
+echo "Warning: Don't restart the unit. Please install drony.apk. After installation connect usb cable and click ok." "Click ok after drony apk installation" >>logs.txt
+qcm\adb shell pm install-existing com.xiaomi.finddevice >>logs.txt
 timeout 10 >nul
 goto exit
 
