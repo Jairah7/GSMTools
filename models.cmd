@@ -79,6 +79,7 @@ if /i "%search%"=="realmec12" call :msg &set opt=2 &call %mtk%
 if /i "%search%"=="vivoy81" call :msg &set tp=https://i.imgur.com/blux1ds.png &set opt=1 &call %mtk%
 if /i "%search%"=="redmia1" call :msg &set opt=8 &call %mtk%
 if /i "%search%"=="redmi9afrp" call :msg &set opt=8 &call %mtk%
+if /i "%search%"=="redmi9amiaccount" call :msg &set opt=7 &call %mtk%
 if /i "%search%"=="huaweiy6pro" call :msg &set tp=https://i.imgur.com/egmx5io.png &set opt=8 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
