@@ -1,4 +1,4 @@
-::last edit J8D09Y23
+::last edit J9D09Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -157,7 +157,7 @@ goto exit
 :miantirelock
 echo Processing anti-relock for Mi-account >>logs.txt
 qcm\adb shell pm uninstall --user 0 com.xiaomi.finddevice >>logs.txt
-echo "Warning: Don't restart the unit. Please install drony.apk. After installation connect usb cable and click ok." "Click ok after drony apk installation" >>logs.txt
+%msg% "Warning: Don't restart the unit. Please install drony.apk. After installation connect usb cable and click ok." "Click ok after drony apk installation" 
 qcm\adb shell pm install-existing com.xiaomi.finddevice >>logs.txt
 timeout 10 >nul
 goto exit
