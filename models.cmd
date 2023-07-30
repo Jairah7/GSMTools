@@ -80,6 +80,7 @@ if /i "%search%"=="vivoy81" call :msg &set tp=https://i.imgur.com/blux1ds.png &s
 if /i "%search%"=="redmia1" call :msg &set opt=8 &call %mtk%
 if /i "%search%"=="redmi9afrp" call :msg &set opt=8 &call %mtk%
 if /i "%search%"=="redmi9amiaccount" call :msg &set opt=7 &call %mtk%
+if /i "%search%"=="redmi9aunlockbootloader" call :msg &set opt=10 &call %mtk%
 if /i "%search%"=="huaweiy6pro" call :msg &set tp=https://i.imgur.com/egmx5io.png &set opt=8 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
