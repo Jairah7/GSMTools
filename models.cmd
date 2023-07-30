@@ -1,4 +1,4 @@
-::last edit J9D09Y23
+::last edit J8D09Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -82,6 +82,8 @@ if /i "%search%"=="redmi9afrp" call :msg &set opt=8 &call %mtk%
 if /i "%search%"=="redmi9amiaccount" call :msg &set opt=7 &call %mtk%
 if /i "%search%"=="redmi9aunlockbootloader" call :msg &set opt=10 &call %mtk%
 if /i "%search%"=="huaweiy6pro" call :msg &set tp=https://i.imgur.com/egmx5io.png &set opt=8 &call %mtk%
+if /i "%search%"=="mtkdumpbootandvbmeta" call :msg &set opt=17 &call %mtk%
+if /i "%search%"=="mtkfixdm-veritycorruption" call :msg &set opt=18 &call %mtk%
 ::direct process for qualcomm
 :: ---------------------------------------------------------------------------------------
 if /i "%search%"=="QualcommManualSafeformat" echo You had selected Manual Safeformat >>logs.txt &set opt=2 &call %qcm% 
