@@ -1,4 +1,4 @@
-::last update M8D29Y23
+::last update M9D29Y23
 set loader=
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
@@ -110,6 +110,7 @@ echo *** %date%-%time% Please wait relocking bootloader for mtk device *** >>log
 goto exit
 
 :unlockbl
+if %search%==redmi9afrp set loader=--preloader=%dir:~0,-7%\preloader\preloader_Redmi_9a_246.bin &call :process7
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process7 
