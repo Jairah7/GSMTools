@@ -158,6 +158,7 @@ goto exit
 echo Processing anti-relock for Mi-account >>logs.txt
 qcm\adb shell pm uninstall --user 0 com.xiaomi.finddevice >>logs.txt
 %msg% "Warning: Don't restart the unit. Please install drony.apk. After installation connect usb cable and click ok." "Click ok after drony apk installation" 
+call :adb
 qcm\adb shell pm install-existing com.xiaomi.finddevice >>logs.txt
 timeout 10 >nul
 goto exit
