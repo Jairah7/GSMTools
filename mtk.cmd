@@ -295,6 +295,7 @@ set file=
 set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
 for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
 if "%file%"=="" echo No file selected >>logs.txt &goto exit
+echo Preloader: %loader%
 exit /b
 
 :img
