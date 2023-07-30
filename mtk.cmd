@@ -1,4 +1,4 @@
-::last update M8D29Y23
+::last update M9D29Y23
 set loader=
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
@@ -17,6 +17,34 @@ if %opt%==13 goto mrebuild
 if %opt%==14 goto removedemo
 if %opt%==15 goto msafeformat
 if %opt%==16 goto mformat
+if %opt%==17 goto dump
+if %opt%==18 goto fixverity
+
+:fixverity
+echo. >>logs.txt
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto :fixdm 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+
+:fixdm
+echo Fixing dm-verity corruption... >>logs.txt
+%mtk_process% w vbmeta firmware\vbmeta.img %loader% >>logs.txt
+goto exit
+
+:dump
+echo. >>logs.txt
+%msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
+set /p _opt=<tmp &del /f tmp
+if %_opt%==yes goto :dumpbv 
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==cancel goto exit
+if not exist dump mkdir dump
+echo Please wait backing up vbmeta.img and boot.img... >>logs.txt
+:dumpbv
+%mtk_process% r boot,vbmeta dump\boot.img,dump\vbmeta.img %loader% >>logs.txt
+goto exit
 
 :crash2brom
 ::force to brom using preloader
@@ -267,6 +295,13 @@ set file=
 set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
 for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
 if "%file%"=="" echo No file selected >>logs.txt &goto exit
+exit /b
+
+:img
+set img=
+set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
+for /f "delims=" %%I in ('%ps_cmd%') do set "img=%%I"
+if "%img%"=="" echo No img selected >>logs.txt &goto exit
 exit /b
 
 :exit
