@@ -1,5 +1,4 @@
-::last update M8D29Y23
-set loader=
+::last update M9D29Y23
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -136,9 +135,10 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process9 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set "loader=--preloader=%file%"
 if %_opt%==cancel goto exit
 :process9
+echo Preloader: %loader% >logs.txt
 echo *** %date%-%time% Reading GPT *** >>logs.txt
 %mtk_process% printgpt %loader% >>logs.txt
 goto exit
@@ -259,6 +259,7 @@ echo *** %date%-%time% Formating miaccount for xiaomi *** >>logs.txt
 goto exit
 
 :pre
+set loader=
 set file=
 set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
 for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
