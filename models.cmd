@@ -1,4 +1,4 @@
-::last edit M6D09Y23
+::last edit J7D09Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -95,6 +95,7 @@ if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp
 if /i "%search%"=="adbremovemdmlock" call :adb &goto mdmlock
 if /i "%search%"=="adbreboottorecoverymode" call :adb &goto recovery 
 if /i "%search%"=="adbreboottoedlmode" call :adb &goto adbedl
+if /i "%search%"=="adbmiantirelock" call :adb &goto miantirelock
 ::-----------------------------------------------------------------------------------------
 if /i "%search%"=="mtpbrowser" goto mtp
 :: for audio downloader
@@ -148,6 +149,13 @@ echo Downloading Video...>>logs.txt
 if %errorlevel% NEQ 0 echo Error downloading trying method 2 >>logs.txt &echo. &plugins\yt.exe -i -c --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
 if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for TC-Downloader >>logs.txt &yt - U  >>logs.txt
 echo downloading video finished >>logs.txt
+goto exit
+
+:miantirelock
+echo Processing anti-relock for Mi-account >>logs.txt
+qcm\adb shell pm uninstall --user 0 com.xiaomi.finddevice >>logs.txt
+echo Some devices need to install Drony.apy. Please install first if needed.
+timeout 10 >nul
 goto exit
 
 :adbedl
