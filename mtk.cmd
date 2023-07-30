@@ -1,4 +1,5 @@
-::last update M9D29Y23
+::last update M8D29Y23
+setlocal enabledelayedexpansion
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -135,10 +136,10 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process9 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set "loader=--preloader=%file%"
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
 if %_opt%==cancel goto exit
 :process9
-echo Preloader: %loader% >logs.txt
+echo Preloader: "%loader%" >>logs.txt
 echo *** %date%-%time% Reading GPT *** >>logs.txt
 %mtk_process% printgpt %loader% >>logs.txt
 goto exit
