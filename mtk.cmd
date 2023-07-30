@@ -1,5 +1,4 @@
-::last update M9D29Y23
-setlocal enabledelayedexpansion
+::last update M8D29Y23
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
 if %opt%==2 goto fmtk
@@ -32,7 +31,7 @@ echo. >>logs.txt
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process1 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process1
 echo *** %date%-%time% Formating password only*** >>logs.txt
@@ -45,7 +44,7 @@ echo. >>logs.txt
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process2 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process2
 echo *** %date%-%time% Removing password - safeformat *** >>logs.txt
@@ -56,7 +55,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process3 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 echo *** %date%-%time% Please wait removing demo for vivo device *** >>logs.txt
 :process3
@@ -73,7 +72,7 @@ if exist mtk\rdata.rar plugins\7zip\7z x -y mtk\rdata.rar -omtk >>logs.txt
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process4 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process4
 echo Please wait Rebuilding userdata... >>logs.txt
@@ -84,7 +83,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process5 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process5
 if not exist "C:\Users\%username%\Documents\TC-Backup" mkdir "C:\Users\%username%\Documents\TC-Backup"
@@ -102,7 +101,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process6 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 process6
 echo *** %date%-%time% Please wait relocking bootloader for mtk device *** >>logs.txt
@@ -113,7 +112,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process7 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process7
 echo *** %date%-%time% Please wait unlocking bootloader for mtk device *** >>logs.txt
@@ -124,7 +123,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process8 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process8
 echo *** %date%-%time% Bypassing Auth *** >>logs.txt
@@ -136,7 +135,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process9 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader^=-^-preloader^=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process9
 echo Preloader: "%loader%" >>logs.txt
@@ -148,7 +147,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process10 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process10
 ::safeformat plus frp
@@ -163,7 +162,7 @@ if exist frp.txt goto mfrp
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process11 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 ::safeformat
 echo. >>logs.txt
@@ -176,7 +175,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process12 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process12
 ::format
@@ -190,7 +189,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process13 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process13
 ::format
@@ -203,7 +202,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process14 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process14
 ::format
@@ -223,7 +222,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process15 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process15
 ::format
@@ -243,7 +242,7 @@ goto exit
 %msg% "Auto Select Preloader?" "Loader" /I:Q /B:N >tmp
 set /p _opt=<tmp &del /f tmp
 if %_opt%==yes goto process16 
-if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre &set loader=--preloader=%file%
+if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..." "Crash to Brom" /T:5 &call :pre 
 if %_opt%==cancel goto exit
 :process16
 ::format
@@ -264,6 +263,8 @@ set loader=
 set file=
 set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
 for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
+set loader=--preloader=%file%
+echo Preloader: %loader% >>logs.txt
 if "%file%"=="" echo No file selected >>logs.txt &goto exit
 exit /b
 
