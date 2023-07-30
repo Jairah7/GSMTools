@@ -1,4 +1,4 @@
-::last edit J7D09Y23
+::last edit J8D09Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -198,6 +198,7 @@ set #=121
 echo Please wait initializing... >logs.txt
 qcm\adb kill-server >logs.txt
 qcm\adb start-server >logs.txt
+%msg% "[1] Top build number in about phone 7 times to enable developer option. [2] Enable usb debugging and connect usb cable" "Instruction" 
 :adbwait
 set /a #-=1
 echo Waiting for device...%#% >logs.txt
