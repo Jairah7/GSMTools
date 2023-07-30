@@ -30,7 +30,7 @@ if %_opt%==cancel goto exit
 
 :fixdm
 echo Fixing dm-verity corruption... >>logs.txt
-%mtk_process% w vbmeta firmware\vbmeta.img %loader% >>logs.txt
+%mtk_process% w vbmeta %dir:~0,-7%\firmware\vbmeta.img %loader% >>logs.txt
 goto exit
 
 :dump
