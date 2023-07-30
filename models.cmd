@@ -1,4 +1,4 @@
-::last edit J8D09Y23
+::last edit J9D09Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
