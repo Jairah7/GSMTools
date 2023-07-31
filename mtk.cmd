@@ -1,4 +1,4 @@
-::last update M8D29Y23
+::last update M9D29Y23
 set loader=
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
@@ -223,7 +223,6 @@ if %_opt%==no %msg% "Please wait for pop up folder and browse your preloader..."
 if %_opt%==cancel goto exit
 :process13
 ::format
-%msg% "%loader%"
 echo. >>logs.txt
 echo *** %date%-%time% Formating FRP *** >>logs.txt
 %mtk_process% e frp %loader% >>logs.txt
@@ -295,7 +294,6 @@ set file=
 set ps_cmd=powershell "Add-Type -AssemblyName System.windows.forms|Out-Null;$f=New-Object System.Windows.Forms.OpenFileDialog;$f.Filter='All files (.)|*.*';$f.showHelp=$true;$f.ShowDialog()|Out-Null;$f.FileName"
 for /f "delims=" %%I in ('%ps_cmd%') do set "file=%%I"
 if "%file%"=="" echo No file selected >>logs.txt &goto exit
-echo Preloader: %loader%
 exit /b
 
 :img
