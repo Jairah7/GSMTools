@@ -1,4 +1,4 @@
-::last update J7D29Y23
+::last update J8D29Y23
 set loader=
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto smtk
