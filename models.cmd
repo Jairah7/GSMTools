@@ -1,4 +1,4 @@
-::last edit J8D09Y23
+::last edit M08D31Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -189,6 +189,7 @@ goto exit
 :adbfrp
 echo Removing FRP via adb...>logs.txt
 qcm\adb shell content insert --uri content://settings/secure --bind name:s:user_setup_complete --bind value:s:1 >logs.txt
+qcm\adb shell am start -c android.intent.category.HOME -a android.intent.action.MAIN 
 if %errorlevel%==0 echo Removing FRP via adb...success >logs.txt &timeout 1 >nul &qcm\adb shell input keyevent 3 >nul 2>&1 &goto exit
 echo Removing FRP via adb...done >logs.txt
 goto exit
