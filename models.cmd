@@ -1,4 +1,4 @@
-::last edit M09D03Y23
+::last edit M09D01Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -95,7 +95,7 @@ if /i "%search%"=="SM-A115" set "mbn=firehose\SM-A115.mbn" &set tp=https://i.img
 if /i "%search%"=="SM-A025" set "mbn=firehose\SM-A025.mbn" &set tp=https://i.imgur.com/knQF3WS.png &set opt=1 &call %qcm%
 if /i "%search%"=="SM-A015" set "mbn=firehose\SM-A015.mbn" &set tp=https://i.imgur.com/pA261iw.jpg &set opt=1 &call %qcm%
 ::--------------------------------for adb functions---------------------------------------
-if /i "%search%"=="enableadb" call enable_adb.cmd
+if /i "%search%"=="enableadb" call enable_adb.cmd &goto exit
 if /i "%search%"=="adbreaddeviceinfo" call :adb &goto exit 
 if /i "%search%"=="adbenablediag" call :adb &goto endiag 
 if /i "%search%"=="adbremovefrp" call :adb &goto adbfrp 
