@@ -1,4 +1,4 @@
-::last update M5D19Y23d
+::last update M9D8Y23d
 if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
