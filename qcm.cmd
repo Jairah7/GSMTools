@@ -3,6 +3,13 @@ if exist testpoint.txt start "" "%tp%" &del /f testpoint.txt
 if %opt%==1 goto sfrp
 if %opt%==2 goto qmanualsf
 if %opt%==3 goto qforceerase
+if %opt%==4 goto y11
+
+:y11
+set mbn=bin\prog_emmc_firehose_8937_ddr.mbn
+call :qport 
+goto :startprocess1
+goto exit
 
 
 
