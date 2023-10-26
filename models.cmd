@@ -1,4 +1,4 @@
-::last edit M10D26Y23
+::last edit M10D27Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -229,14 +229,14 @@ set /a #+=1
 set /a t-=1
 if %t%==0 cls &echo No device found >logs.txt &timeout 5 >nul &goto exit
 if %#%==0 cls &echo Waiting for devices /Í >logs.txt                              
-if %#%==1 cls &echo Waiting for devices \ÍÍÍÍÍÍ >logs.txt
-if %#%==2 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍ >logs.txt
-if %#%==3 cls &echo Waiting for devices \ÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
-if %#%==4 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
-if %#%==5 cls &echo Waiting for devices \ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
-if %#%==6 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
-if %#%==7 cls &echo Waiting for devices \ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
-if %#%==8 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ %t% >logs.txt
+if %#%==1 cls &echo Waiting for devices \###### >logs.txt
+if %#%==2 cls &echo Waiting for devices /########## >logs.txt
+if %#%==3 cls &echo Waiting for devices \############## >logs.txt
+if %#%==4 cls &echo Waiting for devices /################# >logs.txt
+if %#%==5 cls &echo Waiting for devices \####################>logs.txt
+if %#%==6 cls &echo Waiting for devices /######################## >logs.txt
+if %#%==7 cls &echo Waiting for devices \########################### >logs.txt
+if %#%==8 cls &echo Waiting for devices /##############################%t% >logs.txt
 if %#%==9 set #=  
 qcm\adb devices | findstr /i "unauthorized" && cls && echo Please Allow USB Debugging on your Device...%#% >logs.txt && timeout 5 >nul 
 qcm\adb devices -l | findstr /i "model" && goto detected || cls && goto adbwait
