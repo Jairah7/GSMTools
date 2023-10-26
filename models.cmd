@@ -1,4 +1,4 @@
-::last edit M09D08Y23
+::last edit M10D26Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -105,6 +105,7 @@ if /i "%search%"=="adbremovemdmlock" call :adb &goto mdmlock
 if /i "%search%"=="adbreboottorecoverymode" call :adb &goto recovery 
 if /i "%search%"=="adbreboottoedlmode" call :adb &goto adbedl
 if /i "%search%"=="adbmiantirelock" call :adb &goto miantirelock
+if /i "%search%"=="adbsideloadformatdata" goto sideloadformat
 ::-----------------------------------------------------------------------------------------
 if /i "%search%"=="mtpbrowser" goto mtp
 :: for audio downloader
@@ -169,6 +170,14 @@ qcm\adb shell pm install-existing com.xiaomi.finddevice >>logs.txt
 timeout 10 >nul
 goto exit
 
+:sideloadformat
+call :adb
+echo Please wait formating userdata... >logs.txt 
+qcm\adb format-data >logs.txt
+echo Please wait rebooting device... >logs.txt
+qcm\adb reboot >logs.txt
+goto exit
+
 :adbedl
 echo Rebooting to EDL Mode...>logs.txt
 qcm\adb reboot edl >logs.txt
@@ -206,19 +215,31 @@ echo Please wait enabling diagnostic port...done >logs.txt
 goto exit
 
 :adb
-set #=121
 echo Please wait initializing... >logs.txt
 qcm\adb kill-server >logs.txt
 qcm\adb start-server >logs.txt
 %msg% "[1] Top build number in about phone 7 times to enable developer option. [2] Enable usb debugging and connect usb cable" "Instruction" 
+qcm\adb kill-server 
+timeout 2 >nul
+qcm\adb start-server
+set #=
+set t=500
 :adbwait
-set /a #-=1
-echo Waiting for device...%#% >logs.txt
-if %#%==110 echo Please check "Allow USB debugging on your device screen" >logs.txt &timeout 3 >nul 
-if %#%==100 echo Please check you driver >logs.txt
-if %#%==0 goto nodevice
-qcm\adb shell getprop ro.build.product >nul
-if %errorlevel% NEQ 0 timeout 1 >nul &goto adbwait
+set /a #+=1
+set /a t-=1
+if %t%==0 cls &echo No device found >logs.txt &timeout 5 >nul &goto exit
+if %#%==0 cls &echo Waiting for devices /Í >logs.txt                              
+if %#%==1 cls &echo Waiting for devices \ÍÍÍÍÍÍ >logs.txt
+if %#%==2 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍ >logs.txt
+if %#%==3 cls &echo Waiting for devices \ÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
+if %#%==4 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
+if %#%==5 cls &echo Waiting for devices \ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
+if %#%==6 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
+if %#%==7 cls &echo Waiting for devices \ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ >logs.txt
+if %#%==8 cls &echo Waiting for devices /ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ %t% >logs.txt
+if %#%==9 set #=  
+qcm\adb devices | findstr /i "unauthorized" && cls && echo Please Allow USB Debugging on your Device...%#% >logs.txt && timeout 5 >nul 
+qcm\adb devices -l | findstr /i "model" && goto detected || cls && goto adbwait
 :detected
 echo Waiting for device...detected >logs.txt
 echo. >>logs.txt
