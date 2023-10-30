@@ -1,4 +1,4 @@
-::last edit M10D27Y23
+::last edit M10D30Y23
 if exist logs.txt del logs.txt
 set datetime=D%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%%TIME:~0,2%%TIME:~3,2%
 set datetime=%datetime: =T%
@@ -156,7 +156,7 @@ if not exist plugins\ffmpeg.exe echo Please wait downloading requirements this m
 if not exist "C:\Users\%username%\Desktop\video" mkdir "C:\Users\%username%\Desktop\video"
 echo Downloading Video...>>logs.txt
 %downloading% -i -c -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b" --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
-if %errorlevel% NEQ 0 echo Error downloading trying method 2 >>logs.txt &echo. &plugins\yt.exe -i -c --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
+if %errorlevel% NEQ 0 echo Error: Please wait trying to Update TC downloader... &plugins\yt -U >>logs.txt &echo Error downloading trying method 2 >>logs.txt &echo. &plugins\yt.exe -i -c --yes-playlist -o "C:\Users\%username%\Desktop\video\%%(title)s.%%(ext)s" "%search%" >>logs.txt
 if %errorlevel% NEQ 0 echo Sorry downloading failed...& echo Checking update for TC-Downloader >>logs.txt &yt - U  >>logs.txt
 echo downloading video finished >>logs.txt
 goto exit
